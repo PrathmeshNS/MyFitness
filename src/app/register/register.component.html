@@ -1,0 +1,167 @@
+
+<body>
+  <div *ngIf="!showForgetPasswordContent; then firstInfo; else secoundInfo"></div>
+  <ng-template #firstInfo>
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.web"
+              class="img-fluid" alt="Sample image" />
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-4">
+            <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && goNext()">
+              <div class="mb-3 w-50 container">
+                <input type="text" class="form-control" name="firstName" [(ngModel)]="memberData.firstName"
+                  #firstName="ngModel" [ngClass]="{
+                      'is-invalid': f.submitted && firstName.errors
+                    }" autocomplete="off" required placeholder="Enter Your First Name" />
+                <div *ngIf="f.submitted && firstName.errors" class="invalid-feedback">
+                  <div *ngIf="firstName.errors['required']">
+                    First Name is required
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3 w-50 container">
+                <input type="text" class="form-control" name="lastName" [(ngModel)]="memberData.lastName"
+                  #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.errors }" autocomplete="off"
+                  required placeholder="Enter Your Last Name" />
+                <div *ngIf="f.submitted && lastName.errors" class="invalid-feedback">
+                  <div *ngIf="lastName.errors['required']">
+                    Last Name is required
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3 w-50 container">
+                <input type="email" class="form-control" name="email" [(ngModel)]="memberData.email" #email="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && email.errors }" autocomplete="off" required minlength="4"
+                  placeholder="Enter Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+                  <div *ngIf="email.errors['required']">
+                    Email is required
+                  </div>
+                  <div *ngIf="email.errors['pattern']">
+                    Pattern should be john@example.com
+                  </div>
+                </div>
+                <div class="emailExits" *ngIf="emailExits != '' || !email.touched">
+                  {{ emailExits }}
+                </div>
+              </div>
+
+              <div class="container text-center">
+                <button type="submit" class="btn btn-primary mt-2">
+                  Next
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+
+  <ng-template #secoundInfo>
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.web"
+              class="img-fluid" alt="Sample image" />
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-4">
+            <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+              <div class="mb-3 w-50 container">
+                <input type="password" class="form-control" name="password" [(ngModel)]="memberData.password"
+                  #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" autocomplete="off"
+                  placeholder="Enter Your Password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  required />
+                <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
+                  <div *ngIf="password.errors['required']">
+                    Password is required
+                  </div>
+                  <div *ngIf="password.errors['minlength']">
+                    Password must be at least 8 characters
+                  </div>
+                  <div *ngIf="password.errors['pattern']">
+                    1 UpperCase, 1 LowerCase Latter and Also Contain Number
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3 w-50 container">
+                <input type="number" class="form-control" name="mobileNo" [(ngModel)]="memberData.mobileNo"
+                  #mobileNo="ngModel" [ngClass]="{ 'is-invalid': f.submitted && mobileNo.errors }" autocomplete="off"
+                  required placeholder="Enter Your mobile Number" pattern="[6-9]{1}[0-9]{9}" maxlength="10" />
+                <div *ngIf="f.submitted && mobileNo.errors" class="invalid-feedback">
+                  <div *ngIf="mobileNo.errors['required']">
+                    Mobile Number is required
+                  </div>
+
+                  <div *ngIf="mobileNo.errors['pattern']">
+                    Mobile Number Should Have proper Formate
+                  </div>
+
+                  <div *ngIf="mobileNo.errors['maxlength']">
+                    Mobile Number Should Have 10 Digit
+                  </div>
+                </div>
+              </div>
+              <div class="mb-1 w-30 container">
+                <div class="selected-item">
+                  <label class="text-light" for="cars">Choose a Question :</label>
+                  <br />
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="1">Where you born</option>
+                    <hr />
+                    <option value="2">
+                      What is your favourite teacher name
+                    </option>
+                    <hr />
+                    <option value="3">Your someone Special name</option>
+                  </select>
+                </div>
+                <div class="mb-1 w-50 container">
+                  <input type="text" class="form-control" name="forgetPasswordAnswer"
+                    [(ngModel)]="memberData.forgetPasswordAnswer" #forgetPasswordAnswer="ngModel" [ngClass]="{
+                        'is-invalid': f.submitted && forgetPasswordAnswer.errors
+                      }" autocomplete="off" required placeholder="Enter Your Forget Password Answer" />
+                  <div *ngIf="f.submitted && forgetPasswordAnswer.errors" class="invalid-feedback">
+                    <div *ngIf="forgetPasswordAnswer.errors['required']">
+                      Forget Password Answer is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <input type="radio" [(ngModel)]="memberData.gender" name="genderRadio" id="male" value="Male"
+                    checked />
+                  <label class="" for="male">Male</label>
+                </div>
+                <div class="col">
+                  <input type="radio" [(ngModel)]="memberData.gender" name="genderRadio" id="female" value="Female" />
+                  <label class="" for="female">Female</label>
+                </div>
+                <div class="col">
+                  <input type="radio" [(ngModel)]="memberData.gender" name="genderRadio" id="other" value="Other" />
+                  <label class="" for="other">Other</label>
+                </div>
+              </div>
+              <div class="genderError" style="color :rgb(255, 0, 0); font-size: 16px; font-weight: 500; margin: 0 0 0 calc(100% - 55%);" *ngIf="genderError!=''">
+                {{genderError}}
+              </div>
+              <div class="container text-center">
+                <button type="submit" class="btn btn-primary mt-2">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+</body>

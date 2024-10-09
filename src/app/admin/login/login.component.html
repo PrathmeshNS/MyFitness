@@ -1,0 +1,61 @@
+<body>
+
+
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                                <form name="form" class="form-alignment" #f="ngForm"
+                                    (ngSubmit)="f.form.valid && onSubmit()">
+                                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                                        <!-- <input type="email" class="form-control form-control-lg"
+                                            placeholder="Enter your email "> -->
+                                        <input type="email" class="form-control form-control-lg" name="email"
+                                            [(ngModel)]="adminData.adminEmail" #email="ngModel"
+                                            [ngClass]="{ 'is-invalid': f.submitted && email.errors }" 
+                                            required minlength="4" placeholder="Enter Your Email"
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                                        <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+                                            <div *ngIf="email.errors['required']">
+                                                Email is required
+                                            </div>
+                                            <div *ngIf="email.errors['pattern']">
+                                                Pattern should be john@gmail.com
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                                        <input type="password" class="form-control form-control-lg " name="password" [(ngModel)]="adminData.adminPassword" #password="ngModel"
+                                            [ngClass]="{ 'is-invalid': f.submitted && password.errors }" autocomplete="off" placeholder="Enter Your Password"
+                                            minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                        <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
+                                            <div *ngIf="password.errors['required']">
+                                                Password is required
+                                            </div>
+                                            <div *ngIf="password.errors['minlength']">
+                                                Password must be at least 8 characters
+                                            </div>
+                                            <div *ngIf="password.errors['pattern']">
+                                                1 UpperCase, 1 LowerCase Latter and Also Contain Number
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button data-mdb-button-init data-mdb-ripple-init
+                                        class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

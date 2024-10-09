@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>fitness - home | by code info</title>
+
+  <!-- <link rel="stylesheet" href="gymm.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <script>
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector("header");
+      const navLinks = document.querySelectorAll("navbar a");
+
+      if (window.scrollY > 50) {
+        header.style.backgroundColor = "#333";
+        navLinks.forEach((link) => {
+          link.style.color = "#fff";
+        });
+      } else {
+        header.style.backgroundColor = "transparent";
+        navLinks.forEach((link) => {
+          link.style.color = "#0000";
+        });
+      }
+    });
+    document.querySelectorAll("nav a").forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute("href").substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        window.scrollTo({
+          top: targetElement.offsetTop - 90, // Adjust based on your header height
+          behavior: "smooth"
+        });
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+
+    <a href="#" class="logo">
+
+      <i class="fas fa-dumbbell"></i>fitness HUB
+
+    </a>
+
+    <nav class="navbar">
+
+      <a href="#home">Home</a>
+
+      <a href="#services">service</a>
+
+      <a href="#gallery">gallery</a>
+
+      <a href="#pricing">pricing</a>
+
+      <a href="#contact">contact</a>
+
+      <a href="#">|</a>
+
+      <a [routerLink]="['/login']">login</a>
+
+      <a [routerLink]="['/register']" class="signbtn">sign up</a>
+
+    </nav>
+
+  </header>
+
+  <section id="home">
+
+    <div class="max-width">
+
+      <div class="homme-content">
+
+        <h3> help for ideal <br>body fitness</h3>
+
+        <p>“What hurts today makes you stronger tomorrow.” </p>
+
+
+      </div>
+
+      <div class="home-image">
+
+        <!--<image src="images/gym1.jpg"alt="image">-->
+
+
+      </div>
+
+    </div>
+
+  </section>
+  <section>
+    <h2>Our Services</h2>
+    <div id="services">
+      <div class="service">
+        <h3>Personal Training</h3>
+        <p>Get personalized training sessions with certified trainers.</p>
+      </div>
+      <div class="service">
+        <h3>Group Classes</h3>
+        <p>Join our group fitness classes for a fun and motivating workout.</p>
+      </div>
+      <div class="service">
+        <h3>Cardio Equipment</h3>
+        <p>Access a variety of cardio machines for a heart-pumping workout.</p>
+      </div>
+      <div class="service">
+        <h3>Weight Training</h3>
+        <p>Build strength with our extensive range of weight training equipment.</p>
+      </div>
+      <div class="service">
+        <h3>Nutritional Guidance</h3>
+        <p>Receive expert advice on nutrition to complement your fitness routine.</p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Gallery</h2>
+    <div id="gallery">
+      <div class="image">
+        <img
+          src="https://img.freepik.com/free-photo/dumbbells-fitness_335224-876.jpg?size=626&ext=jpg&ga=GA1.1.1953575207.1704445290&semt=ais"
+          alt="Gym Image 1">
+      </div>
+      <div class="image">
+        <img
+          src="https://img.freepik.com/free-photo/gym-with-indoor-cycling-equipment_23-2149270210.jpg?w=826&t=st=1704783586~exp=1704784186~hmac=5cbcd9271db57c66d24ddf2e67f65535e57b2265b9fdb9c89a0c8861478af98f"
+          alt="Gym Image 2">
+      </div>
+      <div class="image">
+        <img src="https://t3.ftcdn.net/jpg/06/23/43/80/240_F_623438009_tVQpXl2jjfyvQsUoHPgctgeynzCFTmG9.jpg"
+          alt="Gym Image 3">
+      </div>
+      <!-- Add more images as needed -->
+      <div class="image">
+        <img src="https://t4.ftcdn.net/jpg/06/19/67/13/240_F_619671368_T9C1Jh67A0sbX4A3pFwBYao3aSVDh2aK.jpg"
+          alt="Gym Image 3">
+      </div>
+      <div class="image">
+        <img src="https://t3.ftcdn.net/jpg/02/10/17/94/240_F_210179424_mTLrEUOv1bbiYHW7kGjq2xRmr73rfcGI.jpg"
+          alt="Gym Image 3">
+      </div>
+      <div class="image">
+        <img src="https://t4.ftcdn.net/jpg/06/23/44/09/240_F_623440933_chZLb1xR2zziYNgpin4v3ObPIkUPaDVr.jpg"
+          alt="Gym Image 3">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Pricing Plans</h2>
+    <div id="pricing">
+      <div class="plan">
+        <h3>Basic</h3>
+        <div class="price">$19.99/month</div>
+        <div class="features">
+          <p>Access to cardio equipment</p>
+          <p>Group fitness classes</p>
+          <p>Locker room access</p>
+        </div>
+      </div>
+
+      <div class="plan">
+        <h3>Standard</h3>
+        <div class="price">$29.99/month</div>
+        <div class="features">
+          <p>Basic plan features</p>
+          <p>Personalized training sessions</p>
+          <p>Nutritional guidance</p>
+        </div>
+      </div>
+
+      <div class="plan">
+        <h3>Premium</h3>
+        <div class="price">$49.99/month</div>
+        <div class="features">
+          <p>Standard plan features</p>
+          <p>24/7 gym access</p>
+          <p>Priority class reservations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact Us</h2>
+    <form action="#" method="post" id="contact">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Your Message:</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <input type="submit" value="Submit">
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Fitness Hub | All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,83 @@
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Menu</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a [routerLink]="['admin']">Dashboard</a></li>
+                <li><a [routerLink]="['showMember']">Members</a></li>
+                <li><a [routerLink]="['showTrainer']">Trainer</a></li>
+                <li><a [routerLink]="['showMaterial']">Material</a></li>
+                <li><a [routerLink]="['showBooking']">Book Material</a></li>
+            </ul>
+        </nav>
+        <div class="main-content">
+            <header class="topbar">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <p>Welcome, {{adminDetails.adminName}}</p>
+                    <a href="#">Logout</a>
+                </div>
+            </header>
+            <div class="content">
+                <div class="cards">
+                    <div class="card">
+                        <h3>Members</h3>
+                        <p>10 </p>
+                    </div>
+                    <div class="card">
+                        <h3>Trainer</h3>
+                        <p>50 </p>
+                    </div>
+                    <div class="card">
+                        <h3>Material</h3>
+                        <p>30 </p>
+                    </div>
+                </div>
+                <!-- <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>john@example.com</td>
+                            <td>555-1234</td>
+                            <td>
+                                <a href="#">Modifier</a>
+                                <a href="#">Supprimer</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>jane@example.com</td>
+                            <td>555-5678</td>
+                            <td>
+                                <a href="#">Modifier</a>
+                                <a href="#">Supprimer</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bob Johnson</td>
+                            <td>bob@example.com</td>
+                            <td>555-9012</td>
+                            <td>
+                                <a href="#">Modifier</a>
+                                <a href="#">Supprimer</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- <router-outlet></router-outlet> -->
