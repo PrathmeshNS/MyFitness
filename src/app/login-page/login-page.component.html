@@ -18,34 +18,14 @@
                       Username and Password Not Found
                     </p>
                   </ng-template>
-                  <form
-                    name="form"
-                    class="form-alignment"
-                    #f="ngForm"
-                    (ngSubmit)="f.form.valid && onSubmit()"
-                  >
-                    <div
-                      data-mdb-input-init
-                      class="form-outline form-white mb-4"
-                    >
-                      <input
-                        type="email"
-                        class="form-control form-control-lg"
-                        name="email"
-                        [(ngModel)]="member.email"
-                        #email="ngModel"
-                        [ngClass]="{
+                  <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="email" class="form-control form-control-lg" name="email" [(ngModel)]="member.email"
+                        #email="ngModel" [ngClass]="{
                           'is-invalid': f.submitted && email.errors
-                        }"
-                        required
-                        minlength="4"
-                        placeholder="Enter Your Email"
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                      />
-                      <div
-                        *ngIf="f.submitted && email.errors"
-                        class="invalid-feedback"
-                      >
+                        }" required minlength="4" placeholder="Enter Your Email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                      <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
                         <div *ngIf="email.errors['required']">
                           Email is required
                         </div>
@@ -54,29 +34,13 @@
                         </div>
                       </div>
                     </div>
-                    <div
-                      data-mdb-input-init
-                      class="form-outline form-white mb-4"
-                    >
-                      <input
-                        type="password"
-                        class="form-control form-control-lg"
-                        name="password"
-                        [(ngModel)]="member.password"
-                        #password="ngModel"
-                        [ngClass]="{
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="password" class="form-control form-control-lg" name="password"
+                        [(ngModel)]="member.password" #password="ngModel" [ngClass]="{
                           'is-invalid': f.submitted && password.errors
-                        }"
-                        autocomplete="off"
-                        placeholder="Enter Your Password"
-                        minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        required
-                      />
-                      <div
-                        *ngIf="f.submitted && password.errors"
-                        class="invalid-feedback"
-                      >
+                        }" autocomplete="off" placeholder="Enter Your Password" minlength="8"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                      <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
                         <div *ngIf="password.errors['required']">
                           Password is required
                         </div>
@@ -88,22 +52,16 @@
                           Number
                         </div>
                       </div>
-                      <a class="forget-password" (click)="showLogin = false"
-                        >Forget Password</a
-                      >
+                      <a class="forget-password" (click)="showLogin = false">Forget Password</a>
                     </div>
-                    <button
-                      data-mdb-button-init
-                      data-mdb-ripple-init
-                      class="btn btn-outline-light btn-lg px-5"
-                      type="submit"
-                    >
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
+                      type="submit">
                       Login
                     </button>
                   </form>
                   <p class="user-register">
                     Don't Have account?
-                    <a [routerLink]="['register']">Register Here</a>
+                    <a [routerLink]="['/register']">Register Here</a>
                   </p>
                 </div>
               </div>
@@ -123,8 +81,9 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card bg-dark text-white" style="border-radius: 1rem">
+            <a style="margin: 16px 0 -0 27px; cursor: pointer; color: wheat;" (click)="showLogin = true" >back</a>
               <div class="card-body p-5 text-center">
-                <div class="mt-md-4 pb-5">
+                <div class="md-4 pb-5">
                   <p *ngIf="msg; then showText else showError  "></p>
                   <ng-template #showText>
                     <p class="text-white-50 mb-5">
@@ -136,22 +95,12 @@
                       forget Password Doesn't Match :(
                     </p>
                   </ng-template>
-                  <form
-                    name="form"
-                    class="form-alignment"
-                    #f="ngForm"
-                    (ngSubmit)="f.form.valid && onCheck()"
-                  >
+                  <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onCheck()">
                     <div class="mb-1 w-30 container">
                       <div class="selected-item">
-                        <label class="text-light" for="cars"
-                          >Choose a Question :</label
-                        >
+                        <label class="text-light" for="cars">Choose a Question :</label>
                         <br />
-                        <select
-                          class="form-select form-select-lg"
-                          aria-label=".form-select-sm example"
-                        >
+                        <select class="form-select form-select-lg" aria-label=".form-select-sm example">
                           <option value="1">Where you born</option>
                           <hr />
                           <option value="2">
@@ -162,35 +111,20 @@
                         </select>
                       </div>
                       <div class="mb-1 w-100 container">
-                        <input
-                          type="text"
-                          class="form-control mt-3 py-3"
-                          name="forgetPasswordAnswer"
-                          [(ngModel)]="member.forgetPasswordAnswer"
-                          #forgetPasswordAnswer="ngModel"
-                          [ngClass]="{
+                        <input type="text" class="form-control mt-3 py-3" name="forgetPasswordAnswer"
+                          [(ngModel)]="member.forgetPasswordAnswer" #forgetPasswordAnswer="ngModel" [ngClass]="{
                             'is-invalid':
                               f.submitted && forgetPasswordAnswer.errors
-                          }"
-                          autocomplete="off"
-                          required
-                          placeholder="Enter Your Forget Password Answer"
-                        />
-                        <div
-                          *ngIf="f.submitted && forgetPasswordAnswer.errors"
-                          class="invalid-feedback"
-                        >
+                          }" autocomplete="off" required placeholder="Enter Your Forget Password Answer" />
+                        <div *ngIf="f.submitted && forgetPasswordAnswer.errors" class="invalid-feedback">
                           <div *ngIf="forgetPasswordAnswer.errors['required']">
                             Forget Password Answer is required
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button
-                      data-mdb-button-init
-                      data-mdb-ripple-init
-                      class="btn btn-outline-light btn-lg px-5 mt-3"
-                      type="submit" >
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5 mt-3"
+                      type="submit">
                       Check
                     </button>
                   </form>
@@ -213,37 +147,20 @@
                   <p *ngIf="confirmPassword then showText else showError"></p>
                   <ng-template #showText>
                     <p class="text-white mb-5">
-                     Enter Password that you want to change
+                      Enter Password that you want to change
                     </p>
                   </ng-template>
                   <ng-template #showError>
                     <p class="text-danger mb-5">Password and confirm Password doesn't Matched </p>
                   </ng-template>
-                  <form
-                    name="form"
-                    class="form-alignment"
-                    #f="ngForm"
-                    (ngSubmit)="f.form.valid && onChangePassword()" >
+                  <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onChangePassword()">
                     <div style="width: 80%;" class="mb-3 container">
-                      <input
-                        type="password"
-                        class="form-control"
-                        name="password"
-                        [(ngModel)]="member.password"
-                        #password="ngModel"
-                        [ngClass]="{
+                      <input type="password" class="form-control" name="password" [(ngModel)]="member.password"
+                        #password="ngModel" [ngClass]="{
                           'is-invalid': f.submitted && password.errors
-                        }"
-                        autocomplete="off"
-                        placeholder="Enter Your Password"
-                        minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        required
-                      />
-                      <div
-                        *ngIf="f.submitted && password.errors"
-                        class="invalid-feedback"
-                      >
+                        }" autocomplete="off" placeholder="Enter Your Password" minlength="8"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                      <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
                         <div *ngIf="password.errors['required']">
                           Password is required
                         </div>
@@ -257,25 +174,12 @@
                       </div>
                     </div>
                     <div style="width: 80%;" class="mb-3 container">
-                      <input
-                        type="password"
-                        class="form-control"
-                        name="password"
-                        [(ngModel)]="member.confirmPassword"
-                        #password="ngModel"
-                        [ngClass]="{
+                      <input type="password" class="form-control" name="password" [(ngModel)]="member.confirmPassword"
+                        #password="ngModel" [ngClass]="{
                           'is-invalid': f.submitted && password.errors
-                        }"
-                        autocomplete="off"
-                        placeholder="Enter Confirm Password"
-                        minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        required
-                      />
-                      <div
-                        *ngIf="f.submitted && password.errors"
-                        class="invalid-feedback"
-                      >
+                        }" autocomplete="off" placeholder="Enter Confirm Password" minlength="8"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                      <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
                         <div *ngIf="password.errors['required']">
                           Password is required
                         </div>
@@ -288,12 +192,8 @@
                         </div>
                       </div>
                     </div>
-                    <button
-                      data-mdb-button-init
-                      data-mdb-ripple-init
-                      class="btn btn-outline-light btn-lg px-5 mt-3"
-                      type="submit"
-                    >
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5 mt-3"
+                      type="submit">
                       Change Password
                     </button>
                   </form>

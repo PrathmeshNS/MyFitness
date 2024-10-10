@@ -5,6 +5,7 @@ export interface Trainer{
     password: '',
     mobileNo: '',
     forgetPasswordAnswer: '',
-    approve:false,
+    approve:any,
     aqaureByMember: 0
+    gender:''
 }

@@ -9,48 +9,44 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  emailExits = ''
-  genderError =""
-  showForgetPasswordContent = false;
-  memberData: Member = {
+  showSecound = false;
+  loginError= false;
+
+  member: Member = {
     memberId: 0,
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    forgetPasswordAnswer: '',
-    mobileNo: '',
     gender: '',
+    mobileNo: '',
+    forgetPasswordAnswer: '',
     confirmPassword: ''
   };
 
-  constructor(private memberService: MemberService, private router:Router) {}
+  constructor(private memberService: MemberService, private router: Router) {}
 
-  goNext() {
-    this.memberService.checkMemberEmail(this.memberData).subscribe({
-      next: (response) => {
-        this.emailExits = "Email Already Exits In Database!!"
-      },
-      error: (err) => {
-        this.showForgetPasswordContent = true;
-      },
-    });
+  ngOnInit() {
+   
   }
 
   onSubmit() {
-    if (this.memberData.gender.length>0) {
-      this.memberService.insertMember(this.memberData).subscribe({
-        next: (response) => { 
-        },
-        error: (err) => {
-          this.router.navigate(['login'])
-        }
-      }); 
-    }
-    else {
-      this.genderError = "gender is required"
-    }
+    console.log(this.member)
+    
   }
 
-  showForgetPassword() {}
+  onNext() {
+   this.memberService.checkMemberEmail(this.member).subscribe({
+    next:(value)=>{
+        console.log( "from Next",value)
+        this.loginError = true
+    },
+    error:(err)=>{
+      this.showSecound  = true
+        console.log(err)
+    },
+   })
+   
+
+  }
 }
