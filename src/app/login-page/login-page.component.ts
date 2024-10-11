@@ -43,12 +43,10 @@ export class LoginPageComponent {
       next: (value) => {
         localStorage.setItem('email', this.member.email);
         localStorage.setItem('password', this.member.password);
-        console.log('after Setting the values : ', this.member);
         this.memberService.serviceMemberData = value;
         this.router.navigate(['member']);
       },
       error: (err) => {
-        console.log(err);
         this.loginError = false
       },
     });
@@ -57,12 +55,10 @@ export class LoginPageComponent {
   onCheck() {
     this.memberService.checkForgetPassword(this.member).subscribe({
       next: (value) => {
-        console.log(value);
         this.showForgetSection = false;
         this.member.password = "";
       },
       error: (err) => {
-        console.log(err);
         this.msg = false;
       },
     });
@@ -72,13 +68,11 @@ export class LoginPageComponent {
     if (this.member.password.match(this.member.confirmPassword)) {
       this.memberService.updatePassword(this.member).subscribe({
         next: (value) => {
-          console.log(value);
           this.showLogin = true
           this.member.email = ""
           this.member.password = ""
         },
         error: (err) => {
-          console.log(err);
         },
       });
     }

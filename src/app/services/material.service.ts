@@ -8,7 +8,7 @@ import { Material } from '../entity/material';
 })
 export class MaterialService {
 
-  private api = "http://localhost:8081/material/"
+  private api = "http://localhost:8080/material/"
   constructor(private http: HttpClient) { }
 
   getAllMaterial(): Observable<any> {

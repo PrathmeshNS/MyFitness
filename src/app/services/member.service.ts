@@ -19,7 +19,7 @@ export class MemberService {
     confirmPassword: ''
   };
 
-  private api = 'http://localhost:8081/member/';
+  private api = 'http://localhost:8080/member/';
 
   constructor(private http: HttpClient) {}
 

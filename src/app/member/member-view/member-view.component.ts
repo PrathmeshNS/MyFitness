@@ -8,11 +8,10 @@ import { MemberService } from 'src/app/services/member.service';
 @Component({
   selector: 'app-member-view',
   templateUrl: './member-view.component.html',
-  styleUrls: ['./member-view.component.css']
+  styleUrls: ['./member-view.component.css'],
 })
 export class MemberViewComponent {
-
-  showMaterialContent = true
+  showMaterialContent = true;
   memberDetails: Member = {
     memberId: 0,
     firstName: '',
@@ -22,54 +21,63 @@ export class MemberViewComponent {
     gender: '',
     mobileNo: '',
     forgetPasswordAnswer: '',
-    confirmPassword: ''
-  }
+    confirmPassword: '',
+  };
 
-  material: Material[] = []
+  material: Material[] = [];
 
+  constructor( private memberService: MemberService, private router: Router,private materialService: MaterialService  ) {
+      this.ngOnDestroy()
 
-  constructor(private memberService: MemberService, private router: Router,
-    private materialService: MaterialService) {
-    this.memberDetails = this.memberService.serviceMemberData
-    console.log(localStorage.length)
+    this.memberDetails = this.memberService.serviceMemberData;
     if (this.memberDetails.firstName.length <= 0) {
-      if(localStorage.length<=0){
-        alert("Login First as a Member")
-        this.router.navigate(['login'])
+      if (localStorage.length <= 0) {
+        alert('Login First as a Member');
+        this.router.navigate(['login']);
       }
     }
-
   }
 
   ngOnInit() {
     this.materialService.getAllMaterial().subscribe({
       next: (value) => {
         this.material = value;
-        console.log(value)
       },
       error: (error) => {
-        console.error('Error:', error);
-      }
-    })
+      },
+    });
   }
-  
-  showUserProfile() { 
-    this.showMaterialContent =false
+
+  showUserProfile() {
+    this.showMaterialContent = false;
   }
 
   goBackToMaterial() {
-    this.showMaterialContent = true
+    this.showMaterialContent = true;
   }
 
-
-  myPassword: string[] = ["**************7e8j5j6", "**************7e88jg", "**************7e8uhgs", "**************7e932s", "**************g58d2s", "**************we3k2s", "**************fh983s"];
+  myPassword: string[] = [
+    '**************7e8j5j6',
+    '**************7e88jg',
+    '**************7e8uhgs',
+    '**************7e932s',
+    '**************g58d2s',
+    '**************we3k2s',
+    '**************fh983s',
+  ];
   generateRandomePassword() {
     const randomIndex = Math.floor(Math.random() * this.myPassword.length);
-    console.log(this.myPassword[randomIndex])
-    return this.myPassword[randomIndex]
+    return this.myPassword[randomIndex];
   }
 
-  // ngOnDestroy(){
-  //   localStorage.clear()
-  // }
+  logout() {
+    this.ngOnDestroy()
+    this.router.navigate(['./']);
+  }
+
+  ngOnDestroy(){
+    localStorage.removeItem("email")
+    localStorage.removeItem("password")
+    localStorage.clear()
+  }
 }

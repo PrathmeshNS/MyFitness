@@ -1,137 +1,112 @@
-* {
+*{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    display: flex;
-    height: 100vh;
-}
-
-.dashboard-container {
-    display: flex;
-    width: 100%;
-}
-
-.sidebar {
-    width: 250px;
-    background-color: #343a40;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.sidebar-header {
-    padding: 20px;
-    text-align: center;
-    background-color: #007bff;
-}
-
-.sidebar-menu {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar-menu li {
-    padding: 15px 20px;
-}
-
-.sidebar-menu li a {
-    color: white;
     text-decoration: none;
 }
 
-.sidebar-menu li:hover {
-    background-color: #007bff;
+body{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(210deg, rgb(113, 182, 216), rgb(193, 189, 82),rgb(193, 83, 208));
 }
 
-.main-content {
-    flex: 1;
+.upper-section{
     display: flex;
+    padding: 20px 30px;
     flex-direction: column;
+    /* background: #4286f4; */
+    border-radius: 10px;
+    margin: 0 0 20px 0;
 }
 
-.topbar {
+.welcome-admin{
+    margin: 0 calc(100% - 39rem) 0 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+}
+
+.link-to-navigate{
+    display: flex;
+    margin: 20px 0 0 0;
+    justify-content: space-evenly;
+}
+ 
+.link-to-navigate>a{
     padding: 20px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
+    background: rgb(244, 248, 136);
+    border-radius: 20px;
 }
 
-.topbar h1 {
-    margin: 0;
-}
-
-.user-info {
+.logout>a{
     display: flex;
-    align-items: center;
-}
-
-.user-info p {
-    margin: 0 10px 0 0;
-}
-
-.content {
-    padding: 20px;
-    flex: 1;
-    background-color: #e9ecef;
-}
-
-.cards {
-    display: flex;
-    gap: 20px;
+    justify-content: end;
+    color: red;
 }
 
 .card {
-    flex: 1;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 5px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    position: relative;
+    margin: 0 0 30px 10rem;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+.l-bg-cherry {
+    background: linear-gradient(to right, #493240, #f09) !important;
+    color: #fff;
 }
 
-.card h3 {
-    margin-bottom: 10px;
+.l-bg-blue-dark {
+    background: linear-gradient(to right, #373b44, #4286f4) !important;
+    color: #fff;
 }
 
-.card p {
-    margin: 0;
+.l-bg-green-dark {
+    background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+    color: #fff;
+}
+
+.l-bg-orange-dark {
+    background: linear-gradient(to right, #a86008, #ffba56) !important;
+    color: #fff;
+}
+
+.card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+    font-size: 110px;
+}
+
+.card .card-statistic-3 .card-icon {
+    text-align: center;
+    line-height: 50px;
+    margin-left: 15px;
+    color: #000;
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    opacity: 0.1;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+}
+
+.l-bg-green {
+    background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+    color: #fff;
+}
+
+.l-bg-orange {
+    background: linear-gradient(to right, #f9900e, #ffba56) !important;
+    color: #fff;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
 }
 
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-}
 
-th,
-td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
 
-th {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-a:hover {
-    color: #0056b3;
-}

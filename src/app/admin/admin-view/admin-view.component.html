@@ -1,83 +1,70 @@
 <body>
-    <div class="dashboard-container">
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <h2>Menu</h2>
-            </div>
-            <ul class="sidebar-menu">
-                <li><a [routerLink]="['admin']">Dashboard</a></li>
-                <li><a [routerLink]="['showMember']">Members</a></li>
-                <li><a [routerLink]="['showTrainer']">Trainer</a></li>
-                <li><a [routerLink]="['showMaterial']">Material</a></li>
-                <li><a [routerLink]="['showBooking']">Book Material</a></li>
-            </ul>
-        </nav>
-        <div class="main-content">
-            <header class="topbar">
-                <h1>Dashboard</h1>
-                <div class="user-info">
-                    <p>Welcome, {{adminDetails.adminName}}</p>
-                    <a href="#">Logout</a>
-                </div>
-            </header>
-            <div class="content">
-                <div class="cards">
-                    <div class="card">
-                        <h3>Members</h3>
-                        <p>10 </p>
-                    </div>
-                    <div class="card">
-                        <h3>Trainer</h3>
-                        <p>50 </p>
-                    </div>
-                    <div class="card">
-                        <h3>Material</h3>
-                        <p>30 </p>
-                    </div>
-                </div>
-                <!-- <table>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Téléphone</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>555-1234</td>
-                            <td>
-                                <a href="#">Modifier</a>
-                                <a href="#">Supprimer</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td>555-5678</td>
-                            <td>
-                                <a href="#">Modifier</a>
-                                <a href="#">Supprimer</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bob Johnson</td>
-                            <td>bob@example.com</td>
-                            <td>555-9012</td>
-                            <td>
-                                <a href="#">Modifier</a>
-                                <a href="#">Supprimer</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> -->
+    <div class="upper-section">
+        <p class="welcome-admin">Welcome {{adminDetails.adminName}} ,</p>
 
+        <div class="link-to-navigate">
+            <a [routerLink]="['/admin/adminView/showMember']"> Members</a>
+            <a [routerLink]="['/admin/adminView/showTrainer']"> Trainer</a>
+            <a [routerLink]="['/admin/adminView/showMaterial']"> Material</a>
+            <a [routerLink]="['/admin/adminView/showBooking']"> Booking status</a>
+        </div>
+        
+        <p class="logout"><a href="">Logout</a></p>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="row ">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card l-bg-cherry">
+                        <div class="card-statistic-3 p-4">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Member</h5>
+                            </div>
+                            <div class="row align-items-end mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-end mb-0">
+                                        {{noOfMember}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card l-bg-blue-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Trainer</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        {{noOfTrainer}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="box-shadow: 20px;" class="col-xl-6 col-lg-6">
+                    <div class="card l-bg-green-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Material</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        {{noOfMaterial}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
-    </div>
+    </main>
 </body>
-
-<!-- <router-outlet></router-outlet> -->

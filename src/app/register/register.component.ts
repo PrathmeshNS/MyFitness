@@ -26,13 +26,16 @@ export class RegisterComponent {
 
   constructor(private memberService: MemberService, private router: Router) {}
 
-  ngOnInit() {
-   
-  }
-
   onSubmit() {
-    console.log(this.member)
-    
+      this.memberService.insertMember(this.member).subscribe({
+        next:(value)=> {
+          console.log(value)
+            this.router.navigate(['/login'])
+        },
+        error:(err)=>{
+            console.log(err)
+        },
+      })    
   }
 
   onNext() {
