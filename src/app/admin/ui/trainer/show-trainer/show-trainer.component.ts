@@ -25,7 +25,9 @@ export class ShowTrainerComponent {
   ngOnInit() {
     this.trainerService.getAllTrainer().subscribe({
       next: (value) => {
-        console.log( "from ",value);
+        this.trainerDetails = value;
+        console.log(value)
+        console.log(this.trainerDetails)
       },
       error: (err) => {
         console.log(err);

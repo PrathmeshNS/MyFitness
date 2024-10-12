@@ -10,8 +10,8 @@ export class TrainerService {
   private api = 'http://localhost:8080/trainer/';
   constructor(private http: HttpClient) {}
 
-  getAllTrainer():Observable<Trainer>{
-    return this.http.get<Trainer>(this.api + 'listOfTrainer');
+  getAllTrainer():Observable<Trainer[]>{
+    return this.http.get<Trainer[]>(this.api + 'listOfTrainer');
   }
 
   loginTrainer(trainer: Trainer) {
