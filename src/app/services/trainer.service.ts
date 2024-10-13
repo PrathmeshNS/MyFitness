@@ -29,4 +29,8 @@ export class TrainerService {
   approveTrainer(trainerId:number){
     return this.http.get<Trainer>(`${this.api + 'approveTrainer'}/${trainerId}`);
   }
+
+  numberOfTrainer(){
+    return this.http.get(this.api+'numberOfTrainer')
+  }
 }

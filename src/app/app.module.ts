@@ -20,6 +20,7 @@ import { LoginComponent } from './admin/login/login.component';
 
 import { ShowTrainerComponent } from './admin/ui/trainer/show-trainer/show-trainer.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { ShowAttendanceComponent } from './admin/ui/attendance/show-attendance/show-attendance.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     MaterialViewComponent,
     ShowTrainerComponent,
     LoginPageComponent,
+    ShowAttendanceComponent,
   ],
   imports: [
     BrowserModule,

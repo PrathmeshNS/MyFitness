@@ -10,6 +10,7 @@ import { ShowBookingComponent } from './admin/ui/viewBooking/show-booking/show-b
 import { ShowTrainerComponent } from './admin/ui/trainer/show-trainer/show-trainer.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginComponent } from './admin/login/login.component';
+import { ShowAttendanceComponent } from './admin/ui/attendance/show-attendance/show-attendance.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -43,6 +44,9 @@ const routes: Routes = [
           },
           {
             path: 'showBooking', component: ShowBookingComponent
+          },
+          {
+            path: 'showAttendace', component: ShowAttendanceComponent
           }
         ]
       },

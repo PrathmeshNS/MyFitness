@@ -27,4 +27,8 @@ export class MaterialService {
     return this.http.get(`${this.api + 'deleteById'}/${material.materialId}`);
 
   }
+  
+  numberOfMaterial(){
+    return this.http.get(this.api+'numberOfMaterial')
+  }
 }

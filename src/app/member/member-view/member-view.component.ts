@@ -27,8 +27,6 @@ export class MemberViewComponent {
   material: Material[] = [];
 
   constructor( private memberService: MemberService, private router: Router,private materialService: MaterialService  ) {
-      this.ngOnDestroy()
-
     this.memberDetails = this.memberService.serviceMemberData;
     if (this.memberDetails.firstName.length <= 0) {
       if (localStorage.length <= 0) {
@@ -71,6 +69,8 @@ export class MemberViewComponent {
   }
 
   logout() {
+    this.memberDetails.email = ""
+    this.memberDetails.password = ""
     this.ngOnDestroy()
     this.router.navigate(['./']);
   }

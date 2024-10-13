@@ -24,7 +24,7 @@
       <section class="vh-100%">
         <div class="container h-50" *ngFor="let materials of material">
           <div class="row d-flex justify-content-start align-items-center h-50 ms-5">
-            <div class="col col-xl-9" style="margin: -1% 0 0 5%">
+            <div class="col col-xl-9" style="margin: -1% 0 0 5%; backdrop-filter: blur(10px);">
               <div class="card mb-5" style="border-radius: 15px">
                 <div class="card-body p-4">
                   <h3 class="mb-3 text-center">{{ materials.materialName }}</h3>
@@ -78,9 +78,7 @@
                       <img src="{{ memberDetails.gender | userImage }}" width="20%" />
                     </div>
                     <h6 class="f-w-600">
-                      {{
-                      memberDetails.gender
-                      | salutation : memberDetails.firstName
+                      {{   memberDetails.gender | salutation : memberDetails.firstName
                       }}
                     </h6>
                     <p>{{ memberDetails.lastName }}</p>
