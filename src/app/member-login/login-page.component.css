@@ -1,0 +1,41 @@
+/* .gradient-custom {
+    background: #6a11cb;
+
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+} */
+
+body{
+    background: url(/assets/loginMemberBackground.jpg) no-repeat;
+    background-size: cover;
+}
+
+.card{
+    background: none;
+    backdrop-filter: blur(20rem);
+}
+.forget-password {
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: end;
+    text-align: end;
+    text-decoration: none;
+}
+
+.forget-password:hover{
+    cursor: pointer;
+    color: wheat;
+}
+
+.user-register{
+    margin: 40px 0 -40px 0;
+}
+
+.user-register>a:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: wheat;
+}
+
+

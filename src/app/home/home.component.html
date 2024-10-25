@@ -71,9 +71,22 @@
 
       <a href="#">|</a>
 
-      <a [routerLink]="['/login']">login</a>
+      <div class="dropdown">
+        <button class="dropbtn">Login</button>
+        <div class="dropdown-content">
+          <a [routerLink]="['memberLogin']"> Member Login</a>
+          <a [routerLink]="['trainerLogin']">Trainer Login</a>
+        </div>
+      </div>
 
-      <a [routerLink]="['/register']" class="signbtn">sign up</a>
+      <div class="dropdown signbtn">
+        <button class="dropbtn">Sign Up</button>
+        <div class="dropdown-content">
+          <a [routerLink]="['memberRegister']"> Member Register</a>
+          <a [routerLink]="['trainerRegister']">Trainer Register</a>
+        </div>
+      </div>
+      <!-- <a [routerLink]="['/register']" class="signbtn">sign up</a> -->
 
     </nav>
 

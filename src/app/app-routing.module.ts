@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './member-register/register.component';
 import { HomeComponent } from './home/home.component';
 import { MemberViewComponent } from './member/member-view/member-view.component';
 import { AdminViewComponent } from './admin/admin-view/admin-view.component';
@@ -8,20 +8,32 @@ import { ShowMemberComponent } from './admin/ui/member/show-member/show-member.c
 import { MaterialViewComponent } from './admin/ui/material/material-view/material-view.component';
 import { ShowBookingComponent } from './admin/ui/viewBooking/show-booking/show-booking.component';
 import { ShowTrainerComponent } from './admin/ui/trainer/show-trainer/show-trainer.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginPageComponent } from './member-login/login-page.component';
 import { LoginComponent } from './admin/login/login.component';
 import { ShowAttendanceComponent } from './admin/ui/attendance/show-attendance/show-attendance.component';
+import { TrainerLoginComponent } from './trainer/trainer-login/trainer-login.component';
+import { TrainerRegisterComponent } from './trainer/trainer-register/trainer-register.component';
+import { TrainerViewComponent } from './trainer/trainer-view/trainer-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {
-    path: 'register', component: RegisterComponent
+    path: 'memberRegister', component: RegisterComponent
   },
   {
-    path: 'login', component: LoginPageComponent
+    path: 'memberLogin', component: LoginPageComponent
   },
   {
     path: 'member', component: MemberViewComponent
+  },
+  {
+    path : 'trainerLogin' , component:TrainerLoginComponent
+  },
+  {
+    path: 'trainerRegister', component:TrainerRegisterComponent
+  },
+  {
+    path: 'trainerHome', component:TrainerViewComponent
   },
   {
     path: 'admin', children: [
@@ -46,7 +58,7 @@ const routes: Routes = [
             path: 'showBooking', component: ShowBookingComponent
           },
           {
-            path: 'showAttendace', component: ShowAttendanceComponent
+            path: 'showAttendance', component: ShowAttendanceComponent
           }
         ]
       },

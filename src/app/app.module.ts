@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './member-register/register.component';
 import { RouterLink } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
@@ -19,8 +19,10 @@ import { MaterialViewComponent } from './admin/ui/material/material-view/materia
 import { LoginComponent } from './admin/login/login.component';
 
 import { ShowTrainerComponent } from './admin/ui/trainer/show-trainer/show-trainer.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginPageComponent } from './member-login/login-page.component';
 import { ShowAttendanceComponent } from './admin/ui/attendance/show-attendance/show-attendance.component';
+import { TrainerLoginComponent } from './trainer/trainer-login/trainer-login.component';
+import { TrainerRegisterComponent } from './trainer/trainer-register/trainer-register.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { ShowAttendanceComponent } from './admin/ui/attendance/show-attendance/s
     ShowTrainerComponent,
     LoginPageComponent,
     ShowAttendanceComponent,
+    TrainerLoginComponent,
+    TrainerRegisterComponent,
   ],
   imports: [
     BrowserModule,

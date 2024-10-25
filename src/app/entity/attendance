@@ -3,4 +3,5 @@ export interface Attendace{
     date: '',
     inTime: '',
     outTime: '',
+    
 }
