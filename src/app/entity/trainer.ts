@@ -3,6 +3,7 @@ export interface Trainer{
     fullName: '',
     email: '',
     password: '',
+    confirmPassword: ''
     mobileNo: '',
     forgetPasswordAnswer: '',
     approve:any,

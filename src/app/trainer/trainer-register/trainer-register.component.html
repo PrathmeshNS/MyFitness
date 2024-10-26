@@ -1,1 +1,160 @@
-<p>trainer-register works!</p>
+<body>
+  <div *ngIf="!showSecound; then registerOne; else registerTwo"></div>
+
+  <ng-template #registerOne>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card text-white" style="border-radius: 1rem">
+              <div class="card-body p-5 text-center">
+                <div class="mt-md-4 pb-5">
+                  <h2 class="fw-bold mb-2 text-uppercase">Trainer Register</h2>
+                  <p *ngIf="!registerError; then showText; else showError"></p>
+                  <ng-template #showText>
+                    <p class="text-white-50 mb-5">
+                      Please enter your details!
+                    </p>
+                  </ng-template>
+                  <ng-template #showError>
+                    <p style="color: red" class="text-50 mb-5">
+                      Email Already Exits.. Try with differen't one
+                    </p>
+                  </ng-template>
+                  <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onNext()">
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="text" class="form-control form-control-lg" name="fullname"
+                        [(ngModel)]="trainer.fullName" #fullName="ngModel" [ngClass]="{
+                            'is-invalid': f.submitted && fullName.errors
+                          }" required minlength="2" placeholder="Enter Your Full Name" />
+                      <div *ngIf="f.submitted && fullName.errors" class="invalid-feedback">
+                        <div *ngIf="fullName.errors['required']">
+                          Full Name is required
+                        </div>
+                      </div>
+                    </div>
+
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="email" class="form-control form-control-lg" name="email" [(ngModel)]="trainer.email"
+                        #email="ngModel" [ngClass]="{
+                            'is-invalid': f.submitted && email.errors
+                          }" required minlength="4" placeholder="Enter Your Email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                      <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+                        <div *ngIf="email.errors['required']">
+                          Email is required
+                        </div>
+                        <div *ngIf="email.errors['pattern']">
+                          Pattern should be <b>"john@gmail.com" </b>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="password" class="form-control form-control-lg" name="password"
+                        [(ngModel)]="trainer.password" #password="ngModel" [ngClass]="{
+                            'is-invalid': f.submitted && password.errors
+                          }" autocomplete="off" placeholder="Enter Your Password" minlength="8"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                      <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
+                        <div *ngIf="password.errors['required']">
+                          Password is required
+                        </div>
+                        <div *ngIf="password.errors['minlength']">
+                          Password must be at least 8 characters
+                        </div>
+                        <div *ngIf="password.errors['pattern']">
+                          1 UpperCase, 1 LowerCase Latter and Also Contain
+                          Number
+                        </div>
+                      </div>
+                    </div>
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
+                      type="submit">
+                      Next
+                    </button>
+                  </form>
+                  <p class="user-register">
+                    Have account?
+                    <a [routerLink]="['/trainerLogin']">Login Here</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+
+  <ng-template #registerTwo>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card text-white" style="border-radius: 1rem">
+              <div class="card-body p-5 text-center">
+                <div class="mt-md-4 pb-5">
+                  <p class="text-white-50 mb-5">Enter Secound Details</p>
+                  <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="number" class="form-control form-control-lg" name="mobileNo"
+                        [(ngModel)]="trainer.mobileNo" #mobileNo="ngModel" [ngClass]="{
+                            'is-invalid': f.submitted && mobileNo.errors
+                          }" autocomplete="off" placeholder="Enter Your Mobile Number" minlength="8"
+                        pattern="[6789][0-9]{9}" required />
+                      <div *ngIf="f.submitted && mobileNo.errors" class="invalid-feedback">
+                        <div *ngIf="mobileNo.errors['required']">
+                          Mobile Number is required
+                        </div>
+                        <div *ngIf="mobileNo.errors['pattern']">
+                          Enter Valid Mobile Number
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="
+                          display: flex;
+                          justify-content: space-between;
+                          margin: 20px calc(100% - 22rem) 0;
+                        " class="form-check">
+                      <div>
+                        <label class="form-check-label" for="flexRadioDefault1">Male</label>
+                        <input class="form gender-radio" #gender="ngModel"
+                          [ngClass]="{'is-invalid' : f.submitted && gender.errors}" type="radio" name="flexRadioDefault"
+                          id="flexRadioDefault1" value="male" [(ngModel)]="trainer.gender" required />
+                      </div>
+                      <div>
+                        <label class="form-check-label" for="flexRadioDefault2">Female
+                        </label>
+                        <input class="form gender-radio" #gender="ngModel"
+                          [ngClass]="{'is-invalid' : f.submitted && gender.errors}" type="radio" name="flexRadioDefault"
+                          id="flexRadioDefault2" value="female" [(ngModel)]="trainer.gender" required />
+                      </div>
+                      <div>
+                        <label class="form-check-label" for="flexRadioDefault3">Other
+                        </label>
+                        <input class="form gender-radio" #gender="ngModel"
+                          [ngClass]="{'is-invalid' : f.submitted && gender.errors}" type="radio" name="flexRadioDefault"
+                          id="flexRadioDefault3" value="other" [(ngModel)]="trainer.gender" required />
+                      </div>
+                    </div>
+                    <div *ngIf="f.submitted && gender.errors" class="invalid-feedback">
+                      <div *ngIf="gender.errors['required']">
+                        gender is required
+                      </div>
+                    </div>
+
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5 mt-3"
+                      type="submit">
+                      Register
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+</body>

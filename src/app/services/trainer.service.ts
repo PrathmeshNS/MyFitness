@@ -8,29 +8,43 @@ import { Observable } from 'rxjs';
 })
 export class TrainerService {
   private api = 'http://localhost:8080/trainer/';
-  constructor(private http: HttpClient) {}
+  
+  constructor(private http: HttpClient) { }
 
-  getAllTrainer():Observable<Trainer[]>{
+  getAllTrainer(): Observable<Trainer[]> {
     return this.http.get<Trainer[]>(this.api + 'listOfTrainer');
   }
 
   loginTrainer(trainer: Trainer) {
     return this.http.post(this.api + 'loginTrainer', trainer);
   }
-
-  // searchTrainerById(trainerId: number) {
-  //   return this.http.get<Trainer>(`${this.api + 'approveTrainer'}/${trainerId}`);
-  // }
-
-  insertTrainer(trainer:Trainer){
-    this.http.post(this.api+"insertTrainer",trainer)
+  
+  searchTrainerById(trainerId: number) {
+    return this.http.get<Trainer>(`${this.api + 'approveTrainer'}/${trainerId}`);
+  }
+  
+  insertTrainer(trainer: Trainer) {
+    return this.http.post(this.api + "insertTrainer", trainer)
   }
 
-  approveTrainer(trainerId:number){
+  approveTrainer(trainerId: number) {
     return this.http.get<Trainer>(`${this.api + 'approveTrainer'}/${trainerId}`);
   }
 
-  numberOfTrainer(){
-    return this.http.get(this.api+'numberOfTrainer')
+  numberOfTrainer() {
+    return this.http.get(this.api + 'numberOfTrainer')
   }
+  
+  checkEmail(trainerEmail:string) {
+    return this.http.get<Trainer>(`${this.api + 'searchByEmail'}/${trainerEmail}`);
+  }
+
+  checkForgetPassword(trainer: Trainer) {
+    return  this.http.post(this.api+"checkForgetPassword",trainer);
+  }
+
+  updatePassword(trainer: Trainer) {
+    return this.http.post(this.api+"updatePassword",trainer);
+  }
+
 }
