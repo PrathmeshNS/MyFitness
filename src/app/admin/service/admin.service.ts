@@ -17,7 +17,7 @@ export class AdminService {
   }
 
 
-  private api = 'http://localhost:8081/admin/';
+  private api = 'http://localhost:8080/admin/';
 
   constructor(private http:HttpClient) {
     
@@ -28,6 +28,6 @@ export class AdminService {
   // }
 
   adminLogin(admin:Admin):Observable<any>{
-    return this.http.post(this.api+"adminLogin",admin)
+    return this.http.post(this.api+"login",admin)
   }
 }

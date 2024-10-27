@@ -41,13 +41,15 @@ export class LoginPageComponent {
   onSubmit() {
     this.memberService.loginMember(this.member).subscribe({
       next: (value) => {
-        localStorage.setItem('email', this.member.email);
-        localStorage.setItem('password', this.member.password);
+        localStorage.setItem('memberEmail', this.member.email);
+        localStorage.setItem('memberPassword', this.member.password);
         this.memberService.serviceMemberData = value;
-        this.router.navigate(['member']);
+        this.router.navigate(['member/view']);
+        console.log(value)
       },
       error: (err) => {
         this.loginError = false
+        console.log(err)
       },
     });
   }
@@ -82,8 +84,8 @@ export class LoginPageComponent {
   }
 
   setLocalStorage() {
-    this.email = localStorage.getItem('email');
-    this.password = localStorage.getItem('password');
+    this.email = localStorage.getItem('memberEmail');
+    this.password = localStorage.getItem('memberPassword');
     this.member.email = this.email.toString();
     this.member.password = this.password.toString();
   }

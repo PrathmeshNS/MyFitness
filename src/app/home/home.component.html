@@ -69,19 +69,18 @@
       <div class="dropdown">
         <button class="dropbtn">Login</button>
         <div class="dropdown-content">
-          <a [routerLink]="['memberLogin']"> Member Login</a>
-          <a [routerLink]="['trainerLogin']">Trainer Login</a>
+          <a [routerLink]="['member/']"> Member Login</a>
+          <a [routerLink]="['trainer/']">Trainer Login</a>
         </div>
       </div>
 
       <div class="dropdown signbtn">
         <button class="dropbtn">Sign Up</button>
         <div class="dropdown-content">
-          <a [routerLink]="['memberRegister']"> Member Register</a>
-          <a [routerLink]="['trainerRegister']">Trainer Register</a>
+          <a [routerLink]="['member/register']"> Member Register</a>
+          <a [routerLink]="['trainer/register']">Trainer Register</a>
         </div>
       </div>
-      <!-- <a [routerLink]="['/register']" class="signbtn">sign up</a> -->
 
     </nav>
 

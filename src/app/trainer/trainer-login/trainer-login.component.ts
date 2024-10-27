@@ -49,8 +49,9 @@ export class TrainerLoginComponent {
       error: (err) => {
         this.loginError = false
       },
-    });
+    })
   }
+
 
   onCheck() {
     this.trainerService.checkForgetPassword(this.trainer).subscribe({

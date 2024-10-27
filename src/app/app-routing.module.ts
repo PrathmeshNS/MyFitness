@@ -17,23 +17,33 @@ import { TrainerViewComponent } from './trainer/trainer-view/trainer-view.compon
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+
   {
-    path: 'memberRegister', component: RegisterComponent
+    path: 'member', children: [
+      {
+        path: '', component: LoginPageComponent
+      },
+      {
+        path: 'register', component: RegisterComponent
+      },
+      {
+        path: 'view', component: MemberViewComponent
+      }
+    ]
   },
+
   {
-    path: 'memberLogin', component: LoginPageComponent
-  },
-  {
-    path: 'member', component: MemberViewComponent
-  },
-  {
-    path : 'trainerLogin' , component:TrainerLoginComponent
-  },
-  {
-    path: 'trainerRegister', component:TrainerRegisterComponent
-  },
-  {
-    path: 'trainerHome', component:TrainerViewComponent
+    path: 'trainer', children: [
+      {
+        path: '', component: TrainerLoginComponent
+      },
+      {
+        path: 'register', component: TrainerRegisterComponent
+      },
+      {
+        path: 'view', component: TrainerViewComponent
+      }
+    ]
   },
   {
     path: 'admin', children: [

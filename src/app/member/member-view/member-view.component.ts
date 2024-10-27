@@ -4,6 +4,7 @@ import { Material } from 'src/app/entity/material';
 import { Member } from 'src/app/entity/member';
 import { MaterialService } from 'src/app/services/material.service';
 import { MemberService } from 'src/app/services/member.service';
+import { LoginPageComponent } from '../member-login/login-page.component';
 
 @Component({
   selector: 'app-member-view',
@@ -26,12 +27,12 @@ export class MemberViewComponent {
 
   material: Material[] = [];
 
-  constructor( private memberService: MemberService, private router: Router,private materialService: MaterialService  ) {
+  constructor( private memberService: MemberService, private router: Router,private materialService: MaterialService) {
     this.memberDetails = this.memberService.serviceMemberData;
     if (this.memberDetails.firstName.length <= 0) {
       if (localStorage.length <= 0) {
         alert('Login First as a Member');
-        this.router.navigate(['login']);
+        this.router.navigate(['/member/']);
       }
     }
   }
@@ -78,6 +79,8 @@ export class MemberViewComponent {
   ngOnDestroy(){
     localStorage.removeItem("email")
     localStorage.removeItem("password")
+    // this.memberLogin.email = ""
+    // this.memberLogin.password = ""
     localStorage.clear()
   }
 }
