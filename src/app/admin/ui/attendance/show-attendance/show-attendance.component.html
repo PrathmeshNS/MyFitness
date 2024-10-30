@@ -1,8 +1,8 @@
 <body>
   <div class="contain-all">
     <div class="back-image">
-      <img src="../assets/backButton.png" style="margin: 0 0 0 20px; display: inline-flex" alt="" srcset=""
-        width="50px" />
+      <img src="../assets/backButton.png" style="margin: 0 0 0 20px; display: inline-flex; cursor: pointer; " alt="" srcset=""
+        width="50px" (click)="goBack()" />
       <p class="heading">Attendance</p>
     </div>
     <div class="container">
@@ -18,8 +18,8 @@
             <p>{{members.firstName + " "+ members.lastName}} </p>
           </div>
           <div class="align-buttons">
-            <button (click)="inTime(members.memberId)"> In Time</button>
-            <button (click)="outTime(members.memberId)"> Out Time</button>
+            <button (click)="inTime(members.memberId,members.firstName)"> In Time</button>
+            <button (click)="outTime(members.memberId, members.firstName)"> Out Time</button>
           </div>
         </div>
       </div>

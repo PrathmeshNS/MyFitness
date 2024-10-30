@@ -9,11 +9,12 @@ import { TrainerService } from 'src/app/services/trainer.service';
   styleUrls: ['./show-trainer.component.css'],
 })
 export class ShowTrainerComponent {
+
   showApproveTrainer = true;
 
   trainerDetails: Trainer[] = [];
 
-  constructor(private trainerService: TrainerService, private router: Router) {}
+  constructor(private trainerService: TrainerService, private router: Router) { }
 
   showApproved() {
     this.showApproveTrainer = true;
@@ -33,6 +34,29 @@ export class ShowTrainerComponent {
         console.log(err);
       },
     });
+  }
+
+
+
+  approveTrainer(id: number, fullName:String) {
+    this.trainerService.approveTrainer(id).subscribe({
+      next: (value) => {
+        console.log(value)
+        alert(fullName+" Approve Sucessfully!!")
+        this.reloadPage()
+      },
+      error: (err) => {
+        console.log(err)
+      },
+    })
+  }
+  
+  showDetails(id: number) {
+    throw new Error('Method not implemented.');
+  }
+
+  reloadPage() {
+    window.location.reload()
   }
 
   goBack() {

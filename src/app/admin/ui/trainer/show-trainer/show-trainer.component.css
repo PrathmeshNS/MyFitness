@@ -4,10 +4,12 @@
     box-sizing: border-box;
 }
 
-body {
-    display: block;
+.contain-all {
     background: linear-gradient(180deg, rgb(133, 246, 204), #81d9ff);
-    height: calc(100% - 1px);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
 }
 
 .topView {
@@ -186,4 +188,33 @@ body {
 .single_advisor_profile:hover .single_advisor_details_info p,
 .single_advisor_profile:focus .single_advisor_details_info p {
     color: #ffffff;
+}
+
+.option-button{
+    padding: 10px 20px;
+    justify-content: space-around;
+}
+
+.option-button>button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.option-button>button:first-child{
+    color: rgb(255, 255, 255);
+    background: #4b4c65;
+}
+
+.option-button>button:last-child{
+    color: rgb(0, 0, 0);
+    background: #98ffbe;
+}
+
+
+.option-button>button:hover{
+   padding: 15px 25px;
+   color: rgb(105, 105, 105);
+   font-weight: 800;
+   background-color: aqua;
 }

@@ -1,42 +1,51 @@
 <body>
-    
-    <section class="vh-100%">
-        <div class="container h-50" *ngFor="let materials of material">
-          <div class="row d-flex justify-content-start align-items-center h-50 ms-5">
-            <div class="col col-xl-9" style="margin: -1% 0 0 5%; backdrop-filter: blur(10px);">
-              <div class="card mb-5" style="border-radius: 15px">
-                <div class="card-body p-4">
-                  <h3 class="mb-3 text-center">{{ materials.materialName }}</h3>
-                  <hr />
-                  <div class="d-flex justify-content-start align-items-center">
-                    <a>
-                      <img src="{{ materials.url }}" width="60" />
-                    </a>
-                    <p class="mb-0 text-uppercase">
-                      <span class="ms-3 me-4">|</span>
-                    </p>
-                    <p class="mb-0 text-capitalize">
-                      <i class="text-center fas fa-cog me-2"></i>
-                      <span class="text-muted small">{{
-                        materials.materialDescription
-                        }}</span>
-                    </p>
-                    <p class="mb-0 text-uppercase">
-                      <span class="ms-3 me-4">|</span>
-                    </p>
-                    <button type="button" data-mdb-button-init data-mdb-ripple-init
-                      class="btn btn-outline-warning btn-sm btn-floating">
-                      view
-                    </button>
-                    <button type="button" data-mdb-button-init data-mdb-ripple-init
-                      class="ms-4 btn btn-outline-primary btn-sm btn-floating">
-                      book
-                    </button>
-                  </div>
-                </div>
+  <div class="contain-all">
+    <header>
+      <div class="navigation-links">
+        <a href="">Add Material</a>
+        <a href="">Show Material</a>
+      </div>
+    </header>
+    <main>
+      <div>
+
+      </div>
+      <!-- <ng-template #addMaterial> -->
+        <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+          <div data-mdb-input-init class="form-outline form-white mb-4">
+            <input type="text" class="form-control form-control-lg" name="materialName"
+              [(ngModel)]="addNewMaterial.materialName" #materialName="ngModel" [ngClass]="{
+                          'is-invalid': f.submitted && materialName.errors
+                        }" required minlength="2" placeholder="Enter Material Name" />
+            <div *ngIf="f.submitted && materialName.errors" class="invalid-feedback">
+              <div *ngIf="materialName.errors['required']">
+                Material Name is required
+              </div>
+              <div *ngIf="materialName.errors['minlength']">
+                Material Name should Have  2 words
+              </div> 
+            </div>
+          </div>
+          <div data-mdb-input-init class="form-outline form-white mb-4">
+            <input type="text" class="form-control form-control-lg" name="description" [(ngModel)]="addNewMaterial.materialDescription" minlength="8"
+              #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.errors}" autocomplete="off" placeholder="Enter Material Description" required />
+            <div *ngIf="f.submitted && description.errors" class="invalid-feedback">
+              <div *ngIf="description.errors['required']">
+                Description is required
+              </div>
+              <div *ngIf="description.errors['minlength']">
+                Description Should have Minimum 10 Words
               </div>
             </div>
           </div>
-        </div>
-      </section>    
+          <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">
+            Login
+          </button>
+        </form>
+      <!-- </ng-template> -->
+      <ng-template #showMaterial>
+
+      </ng-template>
+    </main>
+  </div>
 </body>

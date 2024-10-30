@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Attendace } from 'src/app/entity/attendance';
 import { Member } from 'src/app/entity/member';
 import { AttendanceService } from 'src/app/services/attendance.service';
@@ -11,43 +12,68 @@ import { MemberService } from 'src/app/services/member.service';
 })
 export class ShowAttendanceComponent {
 
-  attendance:Attendace[] =[];
+  attendance: Attendace[] = [];
 
-  memberDetails: Member[] =[];
+  memberDetails: Member[] = [];
 
   showAttendance = false;
 
-  constructor(private memberService:MemberService,private attendanceService:AttendanceService){
+  constructor(private memberService: MemberService, private attendanceService: AttendanceService, private router:Router) {
     memberService.getAllMember().subscribe({
-      next:(value)=>{
+      next: (value) => {
         this.memberDetails = value
       },
-      error:(err)=>{
+      error: (err) => {
       },
     })
   }
 
   ngOnInit() {
-    console.log(new Date());
     this.getAllAttendance()
   }
-  outTime(id:number) {
-    console.log(id)
-  }
-  inTime(id:number) {
-    console.log(id)
-  }
 
-
-  getAllAttendance(){
-    this.attendanceService.getAllRecord().subscribe({
-      next:(value)=>{
-        this.attendance = value;
-        console.log(value)
+ 
+  inTime(id: number, firstName:string) {
+    this.attendanceService.insertInTime(id).subscribe({
+      next: (value) => {
+        alert(" In Time of "+ firstName +" Added Successfully!!")
+        this.reloadPage()
       },
-      error:(err)=>{
+      error: (err) => {
+        alert("Some Error Occcure While Performing the Operation!!")
+
+      },
+    })
+  }
+
+  outTime(id: number, firstName:string) {
+    this.attendanceService.insertOutTime(id).subscribe({
+      next: (value) => {
+        alert(" Out Time of "+ firstName +" Added Successfully!!")
+        this.reloadPage()
+      },
+      error: (err) => {
+        alert("Some Error Occcure While Performing the Operation!!")
+      },
+    })
+  }
+
+  getAllAttendance() {
+    this.attendanceService.getAllRecord().subscribe({
+      next: (value) => {
+        this.attendance = value;
+      },
+      error: (err) => {
         console.log(err)
       }
     })
+  }
+
+  goBack(){
+    this.router.navigate(['admin/adminView'])
+  }
+
+  reloadPage(){
+    window.location.reload()
   }
 }

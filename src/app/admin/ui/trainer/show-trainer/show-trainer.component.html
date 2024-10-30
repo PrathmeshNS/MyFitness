@@ -1,70 +1,80 @@
 <body>
-    <header>
-        <div class="container">
-            <div style="margin: 0 0 -80px; cursor: pointer;">
-                <img src="/assets/backButton.png" (click)="goBack()" alt="" width="40px">
+    <div class="contain-all">
+        <header>
+            <div class="container">
+                <div style="margin: 0 0 -80px; cursor: pointer;">
+                    <img src="/assets/backButton.png" (click)="goBack()" alt="" width="40px">
+                </div>
             </div>
-        </div>
-        <div class="topView">
-            <p (click)="showApproved()">Approved Trainer</p>
+            <div class="topView">
+                <p (click)="showApproved()">Approved Trainer</p>
 
-            <p (click)="showUnApproved()">UnApprove Trainer</p>
-        </div>
-    </header>
-    <main>
-        <div *ngIf="showApproveTrainer then showApprove; else showUnApprove;">
-
-        </div>
-        <ng-template #showApprove>
-            <div class="row">
-                <!-- Single Advisor-->
-                <div class="contain">
-                    <div class="col-8 col-sm-6 col-lg-3" *ngFor="let trainers of trainerDetails"
-                        style=" margin: 40px 0 0 30px;" >
-                        <div *ngIf="trainers.approve" class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s"
-                            style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp; position: inherit;">
-                            <!-- Team Thumb-->
-                            <div class="advisor_thumb"><img src="assets/maleUserImage.png" alt="" width="100%">
-                                <!-- Social Info-->
-                                <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-                                            class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a>
+                <p (click)="showUnApproved()">UnApprove Trainer</p>
+            </div>
+        </header>
+        <main>
+            <div *ngIf="showApproveTrainer then showApprove; else showUnApprove;">
+            </div>
+            <ng-template #showApprove>
+                <div class="row">
+                    <!-- Single Advisor-->
+                    <div class="contain">
+                        <div class="col-8 col-sm-6 col-lg-3" *ngFor="let trainers of trainerDetails"
+                            style=" margin: 40px 0 0 30px;">
+                            <div *ngIf="trainers.approve" class="single_advisor_profile wow fadeInUp"
+                                data-wow-delay="0.2s"
+                                style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp; position: inherit;">
+                                <!-- Team Thumb-->
+                                <div class="advisor_thumb"><img src="assets/maleUserImage.png" alt="" width="100%">
+                                    <!-- Social Info-->
+                                    <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a
+                                            href="#"><i class="fa fa-twitter"></i></a><a href="#"><i
+                                                class="fa fa-linkedin"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Team Details-->
-                            <div class="single_advisor_details_info">
-                                <h6>{{trainers.fullName}}</h6>
-                                <p class="designation">{{trainers.email}}</p>
+                                <!-- Team Details-->
+                                <div class="single_advisor_details_info">
+                                    <h6>{{trainers.fullName}}</h6>
+                                    <p class="designation">{{trainers.email}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </ng-template>
+            </ng-template>
 
-        <ng-template #showUnApprove>
-            <div class="row" >
-                <!-- Single Advisor-->
-                <div class="contain" >
-                    <div class="col-8 col-sm-6 col-lg-3" *ngFor="let trainer of trainerDetails" style=" margin: 40px 0 0 30px;" >
-                        <div *ngIf="!trainer.approve" class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s"
-                            style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" >
-                            <!-- Team Thumb-->
-                            <div class="advisor_thumb"><img src="{{trainer.gender| userImage}}" alt="" width="100%">
-                                <!-- Social Info-->
-                                <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-                                            class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a>
+            <ng-template #showUnApprove>
+                <div class="row">
+                    <!-- Single Advisor-->
+                    <div class="contain">
+                        <div class="col-8 col-sm-6 col-lg-3" *ngFor="let trainer of trainerDetails"
+                            style=" margin: 40px 0 0 30px;">
+                            <div *ngIf="!trainer.approve" class="single_advisor_profile wow fadeInUp"
+                                data-wow-delay="0.2s"
+                                style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                                <!-- Team Thumb-->
+                                <div class="advisor_thumb"><img src="{{trainer.gender | userImage}}" alt="" width="100%">
+                                    <!-- Social Info-->
+                                    <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a
+                                            href="#"><i class="fa fa-twitter"></i></a><a href="#"><i
+                                                class="fa fa-linkedin"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Team Details-->
-                            <div class="single_advisor_details_info">
-                                <h6>{{trainer.fullName}}</h6>
-                                <p class="designation">{{trainer.email}}</p>
+                                <!-- Team Details-->
+                                <div class="single_advisor_details_info">
+                                    <h6> {{trainer.fullName}}</h6>
+                                    <p class="designation">{{trainer.email}}</p>
+                                </div>
+                                <div class="option-button" style="display: flex;">
+                                    <button (click)="showDetails(1)">view</button>
+                                    <button (click)="approveTrainer(trainer.trainer_id, trainer.fullName)">approve</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>     
-        </ng-template>
-    </main>
+            </ng-template>
+        </main>
+    </div>
 </body>

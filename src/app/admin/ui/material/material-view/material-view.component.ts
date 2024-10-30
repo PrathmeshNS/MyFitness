@@ -8,7 +8,17 @@ import { MaterialService } from 'src/app/services/material.service';
   styleUrls: ['./material-view.component.css'],
 })
 export class MaterialViewComponent {
+  onSubmit() {
+  }
   material: Material[] = [];
-  
-  constructor(private materialService:MaterialService ){}
+
+  addNewMaterial: Material = {
+    materialId: 0,
+    materialName: '',
+    quantity: '',
+    materialDescription: '',
+    url: ''
+  };
+
+  constructor(private materialService: MaterialService) { }
 }
