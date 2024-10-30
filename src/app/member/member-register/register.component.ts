@@ -30,7 +30,7 @@ export class RegisterComponent {
       this.memberService.insertMember(this.member).subscribe({
         next:(value)=> {
           console.log(value)
-            this.router.navigate(['/login'])
+            this.router.navigate(['/member'])
         },
         error:(err)=>{
             console.log(err)

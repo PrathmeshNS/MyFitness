@@ -1,8 +1,5 @@
 <body>
   <div class="contain-all">
-
-
-    <!-- <section class="gettingAttendance"> -->
     <div class="back-image">
       <img src="../assets/backButton.png" style="margin: 0 0 0 20px; display: inline-flex" alt="" srcset=""
         width="50px" />
@@ -12,29 +9,45 @@
       <p class="options" (click)="showAttendance= false">Add Attendance</p>
       <p class="options" (click)="showAttendance=true">Show Attendance</p>
     </div>
-    <div *ngIf="!showAttendance then addAttendance else showAttendaceData"></div>
+    <div *ngIf="!showAttendance then addAttendance else showAttendanceData"></div>
     <ng-template #addAttendance>
       <div class="select">
         <p>Select Member From Following</p>
-        <!-- </div> -->
         <div class="show-member" *ngFor="let members of memberDetails ">
           <div>
             <p>{{members.firstName + " "+ members.lastName}} </p>
           </div>
           <div class="align-buttons">
             <button (click)="inTime(members.memberId)"> In Time</button>
-            <button (click)="outTime(members.memberId)"> In Time</button>
+            <button (click)="outTime(members.memberId)"> Out Time</button>
           </div>
         </div>
       </div>
-      <!-- </section> -->
-
     </ng-template>
-
-    <ng-template #showAttendaceData>
-      <div>
-
-      </div>
+    <ng-template #showAttendanceData>
+      <div class="select">
+        <p>Select Member From Following</p>      
+          <div class="show-member" *ngFor="let attendances of attendance ">
+          <div class="show-name">
+            <p style="text-align: center;">Name</p>
+            <p>{{attendances.member.firstName + " "+ attendances.member.lastName}} </p>
+          </div>
+          <div class="date">
+            <p style="text-align: center;">Date</p>
+            <p style="text-align: center;">{{attendances.date}}</p>
+          </div>
+          <div class="show-time">
+            <div class="in-time">
+              <p style="text-align: center;">In Time</p>
+              <p style="text-align: center;">{{attendances.inTime}}</p>
+            </div>
+            <div class="out-time">
+              <p style="text-align: center;">Out Time</p>
+              <p style="text-align: center;">{{attendances.outTime}}</p>
+            </div>
+          </div>
+        </div>
+        </div>
     </ng-template>
   </div>
 </body>

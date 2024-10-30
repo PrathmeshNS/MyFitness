@@ -8,7 +8,7 @@
 .contain-all {
     background: url(/assets/attendanceBackground.png) no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     z-index: 1;
 }
@@ -77,3 +77,36 @@
     float: right;
 }
 
+.show-name{
+    font-weight: 800;
+    padding: 10px;
+}
+
+.date{
+    color: gray;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.show-time{
+    display: flex;
+    flex-direction:row;
+}
+
+.in-time:first-child{
+    color: red;
+    padding: 10px;
+    font-weight: 700;
+
+}
+
+.out-time:last-child{
+    color: rgb(255, 238, 1);
+    padding: 10px;
+    font-weight: 700;
+
+}
+
+.out-time:nth-child(2){
+    color: brown;
+}
