@@ -1,40 +1,56 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
+.navigation-links {
+    display: flex;
+    justify-content: space-around;
+}
 
-body{
-    background: url(/assets/loginMemberBackground.jpg) no-repeat;
+.navigation-links>a {
+    padding: 10px 20px;
+    margin:  3rem 0 ;
+    background: linear-gradient(10deg, rgb(144, 249, 182), rgb(128, 244, 255));
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    color: rgb(255, 167, 120);
+}
+
+.navigation-links>a:hover{
+    color: rgb(121, 121, 121);
+    cursor: pointer;
+}
+
+hr{
+    width: 80rem;
+    margin: 0 8rem -2rem;
+    border: 6px solid rgb(0, 0, 0);
+    border-radius: 4px;
+}
+
+.contain-all {
+    background: url(/assets/material-background.avif) no-repeat;
     background-size: cover;
+    height: 100%;
+    width: 100%;
 }
 
-.card{
+
+.card {
     background: none;
     backdrop-filter: blur(20rem);
-}
-.forget-password {
-    margin: 10px 0 0 0;
-    display: flex;
-    justify-content: end;
-    text-align: end;
-    text-decoration: none;
+    margin: auto;
 }
 
-.forget-password:hover{
-    cursor: pointer;
-    color: wheat;
+::placeholder {
+    text-align: center;
+    color: aqua;
 }
 
-.user-register{
-    margin: 40px 0 -40px 0;
+input {
+    text-align: center;
 }
-
-.user-register>a:hover{
-    text-decoration: none;
-    cursor: pointer;
-    color: wheat;
-}
-
-

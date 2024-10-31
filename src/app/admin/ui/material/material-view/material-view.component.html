@@ -2,49 +2,129 @@
   <div class="contain-all">
     <header>
       <div class="navigation-links">
-        <a href="">Add Material</a>
-        <a href="">Show Material</a>
+        <a (click)="showAllMaterial=false">Add Material</a>
+        <a (click)="showAllMaterial=true">Show Material</a>
       </div>
     </header>
     <main>
-      <div>
+      <div *ngIf="!showAllMaterial then addMaterial else showMaterial">
 
       </div>
-      <!-- <ng-template #addMaterial> -->
-        <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
-          <div data-mdb-input-init class="form-outline form-white mb-4">
-            <input type="text" class="form-control form-control-lg" name="materialName"
-              [(ngModel)]="addNewMaterial.materialName" #materialName="ngModel" [ngClass]="{
-                          'is-invalid': f.submitted && materialName.errors
-                        }" required minlength="2" placeholder="Enter Material Name" />
-            <div *ngIf="f.submitted && materialName.errors" class="invalid-feedback">
-              <div *ngIf="materialName.errors['required']">
-                Material Name is required
-              </div>
-              <div *ngIf="materialName.errors['minlength']">
-                Material Name should Have  2 words
-              </div> 
-            </div>
-          </div>
-          <div data-mdb-input-init class="form-outline form-white mb-4">
-            <input type="text" class="form-control form-control-lg" name="description" [(ngModel)]="addNewMaterial.materialDescription" minlength="8"
-              #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.errors}" autocomplete="off" placeholder="Enter Material Description" required />
-            <div *ngIf="f.submitted && description.errors" class="invalid-feedback">
-              <div *ngIf="description.errors['required']">
-                Description is required
-              </div>
-              <div *ngIf="description.errors['minlength']">
-                Description Should have Minimum 10 Words
-              </div>
-            </div>
-          </div>
-          <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">
-            Login
-          </button>
-        </form>
-      <!-- </ng-template> -->
-      <ng-template #showMaterial>
+      <ng-template #addMaterial>
+        <hr>
+      <section class="vh-100 gradient-custom ">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card text-white" style="border-radius: 1rem; ">
+                <div class="card-body p-5 text-center">
+                  <div class="mt-md-4 pb-5">
+                    <h2 class="fw-bold mb-5 text-uppercase">Enter Material Details</h2>
+                    <form name="form" class="form-alignment" #f="ngForm" (ngSubmit)="f.form.valid && onAdd()">
+                      <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <input type="text" class="form-control form-control-lg" name="materialName"
+                          [(ngModel)]="addNewMaterial.materialName" #materialName="ngModel" [ngClass]="{
+                              'is-invalid': f.submitted && materialName.errors
+                            }" required minlength="4" placeholder="Enter Material Name" />
+                        <div *ngIf="f.submitted && materialName.errors" class="invalid-feedback">
+                          <div *ngIf="materialName.errors['required']">
+                            Email is required
+                          </div>
+                          <div *ngIf="materialName.errors['minlength']">
+                            materialName should Have 4 Word
+                          </div>
+                        </div>
+                      </div>
 
+                      <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <input type="text" class="form-control form-control-lg" name="description"
+                          [(ngModel)]="addNewMaterial.materialDescription" #description="ngModel" [ngClass]="{
+                              'is-invalid': f.submitted && description.errors
+                            }" autocomplete="off" placeholder="Enter Material Description" minlength="8" required />
+                        <div *ngIf="f.submitted && description.errors" class="invalid-feedback">
+                          <div *ngIf="description.errors['required']">
+                            Password is required
+                          </div>
+                          <div *ngIf="description.errors['minlength']">
+                            Password must be at least 8 characters
+                          </div>
+                        </div>
+                      </div>
+
+                      <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <input type="text" class="form-control form-control-lg" name="url"
+                          [(ngModel)]="addNewMaterial.url" #url="ngModel" [ngClass]="{
+                              'is-invalid': f.submitted && url.errors
+                            }" autocomplete="off" placeholder="Enter Material Image Url" minlength="8" required />
+                        <div *ngIf="f.submitted && url.errors" class="invalid-feedback">
+                          <div *ngIf="url.errors['required']">
+                            Password is required
+                          </div>
+                          <div *ngIf="url.errors['minlength']">
+                            Password must be at least 8 characters
+                          </div>
+                        </div>
+                      </div>
+
+                      <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <input type="number" class="form-control form-control-lg" name="quantity"
+                          [(ngModel)]="addNewMaterial.quantity" #quantity="ngModel" [ngClass]="{
+                              'is-invalid': f.submitted && quantity.errors
+                            }" autocomplete="off" placeholder="Enter Material Quantity" minlength="1" required />
+                        <div *ngIf="f.submitted && quantity.errors" class="invalid-feedback">
+                          <div *ngIf="quantity.errors['required']">
+                            Mobile Number is required
+                          </div>
+                          <div *ngIf="quantity.errors['minlength']">
+                            At Least Have Quantity
+                          </div>
+                        </div>
+                      </div>
+
+                      <button data-mdb-button-init data-mdb-ripple-init style="padding: 10px 20px;"
+                        class="btn btn-outline-light btn-lg px-5" type="submit">
+                        Add
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </ng-template>
+      
+      <ng-template #showMaterial>
+        <section class="vh-100%">
+          <div class="container h-50" *ngFor="let materials of material">
+            <div class="row d-flex justify-content-start align-items-center h-50 ms-5">
+              <div class="col col-xl-9" style="margin: auto; backdrop-filter: blur(10px);">
+                <div class="card mb-5" style="border-radius: 15px">
+                  <div class="card-body p-4">
+                    <h3 class="mb-3 text-center">{{ materials.materialName }}</h3>
+                    <div class="d-flex justify-content-start align-items-center">
+                      <a>
+                        <img src="{{ materials.url }}" width="60" />
+                      </a>
+                      <p class="mb-0 text-uppercase">
+                        <span class="ms-3 me-4">|</span>
+                      </p>
+                      <p class="mb-0 text-capitalize">
+                        <span class="text-muted small">{{
+                          materials.materialDescription
+                        }}</span>
+                        <br>
+                          <i class="text-center fas fa-cog me-2"> Quantity : {{materials.quantity }}</i>
+                      </p>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </ng-template>
     </main>
   </div>

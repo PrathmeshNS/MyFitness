@@ -18,7 +18,7 @@ export class ShowAttendanceComponent {
 
   showAttendance = false;
 
-  constructor(private memberService: MemberService, private attendanceService: AttendanceService, private router:Router) {
+  constructor(private memberService: MemberService, private attendanceService: AttendanceService, private router: Router) {
     memberService.getAllMember().subscribe({
       next: (value) => {
         this.memberDetails = value
@@ -32,28 +32,36 @@ export class ShowAttendanceComponent {
     this.getAllAttendance()
   }
 
- 
-  inTime(id: number, firstName:string) {
+
+  inTime(id: number, firstName: string) {
     this.attendanceService.insertInTime(id).subscribe({
       next: (value) => {
-        alert(" In Time of "+ firstName +" Added Successfully!!")
-        this.reloadPage()
+        if (value) {
+          alert(" In Time of " + firstName + " Added Successfully!!")
+          this.reloadPage()
+        }
+        else {
+          alert("Some Error Occcure While Performing the Operation!!")
+        }
       },
       error: (err) => {
-        alert("Some Error Occcure While Performing the Operation!!")
 
       },
     })
   }
 
-  outTime(id: number, firstName:string) {
+  outTime(id: number, firstName: string) {
     this.attendanceService.insertOutTime(id).subscribe({
       next: (value) => {
-        alert(" Out Time of "+ firstName +" Added Successfully!!")
-        this.reloadPage()
+        if (value) {
+          alert(" Out Time of " + firstName + " Added Successfully!!")
+          this.reloadPage()
+        }
+        else {
+          alert("Member Not Available To Insert Out Time ")
+        }
       },
       error: (err) => {
-        alert("Some Error Occcure While Performing the Operation!!")
       },
     })
   }
@@ -69,11 +77,11 @@ export class ShowAttendanceComponent {
     })
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['admin/adminView'])
   }
 
-  reloadPage(){
+  reloadPage() {
     window.location.reload()
   }
 }

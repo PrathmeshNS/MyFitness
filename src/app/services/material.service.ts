@@ -16,7 +16,7 @@ export class MaterialService {
   }
 
   addMaterial(material: Material): Observable<any> {
-    return this.http.post(this.api + "addMaterial", material)
+    return this.http.post(this.api + "insertMaterial", material)
   }
 
   getMaterialById(material:Material): Observable<any> {

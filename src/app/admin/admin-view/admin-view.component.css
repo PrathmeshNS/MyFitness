@@ -8,7 +8,8 @@
 body{
     width: 100%;
     height: 100vh;
-    background: linear-gradient(210deg, rgb(113, 182, 216), rgb(193, 189, 82),rgb(193, 83, 208));
+    background: url(/assets/admin-background.jpg) no-repeat;
+    background-size: cover;
 }
 
 .upper-section{

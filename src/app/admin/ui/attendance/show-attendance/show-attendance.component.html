@@ -12,7 +12,11 @@
     <div *ngIf="!showAttendance then addAttendance else showAttendanceData"></div>
     <ng-template #addAttendance>
       <div class="select">
-        <p>Select Member From Following</p>
+        <div class="message-search">
+          <p>Select Member From Following  </p>
+          <input type="text" name="" id=""> <img src="" alt="">
+        </div>
+
         <div class="show-member" *ngFor="let members of memberDetails ">
           <div>
             <p>{{members.firstName + " "+ members.lastName}} </p>
@@ -24,9 +28,11 @@
         </div>
       </div>
     </ng-template>
+
+
     <ng-template #showAttendanceData>
       <div class="select">
-        <p>Select Member From Following</p>      
+        <p>List Of Attendance</p>      
           <div class="show-member" *ngFor="let attendances of attendance ">
           <div class="show-name">
             <p style="text-align: center;">Name</p>
