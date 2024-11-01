@@ -23,17 +23,20 @@ noOfMember: any;
 noOfTrainer: any;
 noOfMaterial: any;
 
-  constructor(private router: Router, private adminService:AdminService, private memberService:MemberService, private trainerService:TrainerService, private materialService:MaterialService) {
-
-    this.adminDetails = this.adminService.adminServiceData
-    // if (this.adminDetails.adminEmail.length <= 0) {
-    //   alert("Kindly login as a admin")
-    //   this.router.navigate(['admin'])
-    // }
-
+  constructor(private router: Router, private memberService:MemberService, private trainerService:TrainerService, private materialService:MaterialService) {
+    if (localStorage.length<=0) {
+      alert("Kindly login as a admin")
+      this.router.navigate(['admin'])
+    }
   }
 
   ngOnInit(){
+   this.numberOfMaterial()
+   this.numberOfMember()
+   this.numberOfTrainer()
+  }
+
+ private numberOfMember(){
     this.memberService.numberOfMember().subscribe({
       next:(value)=>{
         this.noOfMember = value
@@ -42,6 +45,9 @@ noOfMaterial: any;
           
       },
     });
+  }
+
+  private numberOfMaterial(){
     this.materialService.numberOfMaterial().subscribe({
       next:(value)=>{
           this.noOfMaterial = value
@@ -50,6 +56,9 @@ noOfMaterial: any;
       },
     })
 
+  }
+
+ private  numberOfTrainer(){
     this.trainerService.numberOfTrainer().subscribe({
       next:(value)=>{
         this.noOfTrainer = value
@@ -58,5 +67,4 @@ noOfMaterial: any;
       },
     })
   }
-
 }

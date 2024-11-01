@@ -1,3 +1,3 @@
 export const ConstantValues = {
-    EN_KEYS : "123456789!@abcsqewwerohn"
+    EN_KEYS : "1234@dsn"
 }

@@ -14,8 +14,6 @@
                                 <form name="form" class="form-alignment" #f="ngForm"
                                     (ngSubmit)="f.form.valid && onSubmit()">
                                     <div data-mdb-input-init class="form-outline form-white mb-4">
-                                        <!-- <input type="email" class="form-control form-control-lg"
-                                            placeholder="Enter your email "> -->
                                         <input type="email" class="form-control form-control-lg" name="email"
                                             [(ngModel)]="adminData.adminEmail" #email="ngModel"
                                             [ngClass]="{ 'is-invalid': f.submitted && email.errors }" 
