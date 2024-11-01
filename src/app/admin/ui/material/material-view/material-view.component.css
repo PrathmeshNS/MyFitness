@@ -25,9 +25,16 @@
     cursor: pointer;
 }
 
+.navigation-links>img{
+    width: calc(100% - 92rem);
+    height: calc(100% - 81rem);
+    margin: 3rem 0 0 -10rem;
+    cursor: pointer;
+}
+
 hr{
-    width: 80rem;
-    margin: 0 8rem -2rem;
+    width: calc(100% - 14rem);  
+    margin: 0 8rem calc(100% - 95rem);
     border: 6px solid rgb(0, 0, 0);
     border-radius: 4px;
 }

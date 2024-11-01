@@ -28,16 +28,21 @@ export class MaterialViewComponent {
   }
 
   onAdd() {
-    this.materialService.addMaterial(this.addNewMaterial).subscribe({
-      next: (value) => {
-        console.log("from Next : ", value)
-        alert("Material Addedd Successfully!!!")
-        this.reloadPage()
-      },
-      error: (err) => {
-        console.log("from error : ", err)
-      },
-    })
+    if (this.addNewMaterial.quantity>0) {
+      this.materialService.addMaterial(this.addNewMaterial).subscribe({
+        next: (value) => {
+          console.log("from Next : ", value)
+          alert("Material Addedd Successfully!!!")
+          this.reloadPage()
+        },
+        error: (err) => {
+          console.log("from error : ", err)
+        },
+      })
+    }
+    else{
+      alert("Quantity Should Have Positive Value")
+    }
   }
 
 
