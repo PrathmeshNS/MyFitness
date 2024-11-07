@@ -19,52 +19,59 @@ export class AdminViewComponent {
     adminEmail: "",
     adminPassword: ""
   }
-noOfMember: any;
-noOfTrainer: any;
-noOfMaterial: any;
+  noOfMember: any;
+  noOfTrainer: any;
+  noOfMaterial: any;
 
-  constructor(private router: Router, private memberService:MemberService, private trainerService:TrainerService, private materialService:MaterialService) {
+  constructor(private router: Router, private memberService: MemberService, private adminService: AdminService, private trainerService: TrainerService, private materialService: MaterialService) {
+    this.adminDetails = adminService.adminServiceData;
     if (localStorage.length<=0) {
       alert("Kindly login as a admin")
       this.router.navigate(['admin'])
     }
   }
 
-  ngOnInit(){
-   this.numberOfMaterial()
-   this.numberOfMember()
-   this.numberOfTrainer()
+  ngOnInit() {
+    this.numberOfMaterial()
+    this.numberOfMember()
+    this.numberOfTrainer()
   }
 
- private numberOfMember(){
+
+  private numberOfMember() {
     this.memberService.numberOfMember().subscribe({
-      next:(value)=>{
+      next: (value) => {
         this.noOfMember = value
       },
-      error:(err)=>{
-          
+      error: (err) => {
+
       },
     });
   }
 
-  private numberOfMaterial(){
+  private numberOfMaterial() {
     this.materialService.numberOfMaterial().subscribe({
-      next:(value)=>{
-          this.noOfMaterial = value
+      next: (value) => {
+        this.noOfMaterial = value
       },
-      error:(err)=>{
+      error: (err) => {
       },
     })
 
   }
 
- private  numberOfTrainer(){
+  private numberOfTrainer() {
     this.trainerService.numberOfTrainer().subscribe({
-      next:(value)=>{
+      next: (value) => {
         this.noOfTrainer = value
       },
-      error:(err)=>{
+      error: (err) => {
       },
     })
   }
+
+  clearingLocalStrorage() {
+    localStorage.clear();
+  }
+
 }

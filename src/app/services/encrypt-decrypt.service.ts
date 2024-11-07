@@ -10,11 +10,24 @@ export class EncryptDecryptService {
   constructor() { }
 
   encryption(data: string) {
-    return CryptoJS.AES.encrypt(data, ConstantValues.EN_KEYS).toString();
+    try {
+      return CryptoJS.AES.encrypt(data, ConstantValues.EN_KEYS).toString();
+    }
+    catch (e) {
+      console.log(e)
+      return ""
+    }
   }
 
-  decryption(data: string) {
-    return CryptoJS.AES.decrypt(data, ConstantValues.EN_KEYS).toString(CryptoJS.enc.Utf8)
+  decryption(data: any) {
+    try {
+      const pass = CryptoJS.AES.decrypt(data, ConstantValues.EN_KEYS)
+      return pass.toString(CryptoJS.enc.Utf8)
+    }
+    catch (e) {
+      console.log(e)
+      return ""
+    }
   }
 
 }

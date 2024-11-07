@@ -17,20 +17,20 @@ export class ShowMemberComponent {
   constructor(private adminMemberService: MemberService, private router: Router, private activeRoute: ActivatedRoute, private adminService:AdminService) { }
 
   ngOnInit(): void {
-    // if (this.adminService.adminServiceData.adminEmail.length <= 0) {
-    //   alert("Your Are not Known to me, please login as admin")
-    //   this.router.navigate(['admin'])
-    // }
-    // else {
-    //   this.adminMemberService.getAllMember().subscribe({
-    //     next: (value) => {
-    //       this.memberData = value
-    //     },
-    //     error: (err) => {
-    //       console.log(err)
-    //     },
-    //   })
-    // }
+    if (this.adminService.adminServiceData.adminEmail.length <= 0) {
+      alert("Your Are not Known to me, please login as admin")
+      this.router.navigate(['admin'])
+    }
+    else {
+      this.adminMemberService.getAllMember().subscribe({
+        next: (value) => {
+          this.memberData = value
+        },
+        error: (err) => {
+          console.log(err)
+        },
+      })
+    }
   }
 
 

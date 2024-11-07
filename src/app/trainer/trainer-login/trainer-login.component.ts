@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Trainer } from 'src/app/entity/trainer';
+import { EncryptDecryptService } from 'src/app/services/encrypt-decrypt.service';
 import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
@@ -15,14 +16,14 @@ export class TrainerLoginComponent {
   password: any;
   msg = true;
   loginError = true;
-  confirmPassword= true;
-  
+  confirmPassword = true;
+
   trainer: Trainer = {
     trainer_id: 0,
     fullName: '',
-    email: '',
-    password: '',
-    confirmPassword:'',
+    email: "",
+    password: "",
+    confirmPassword: '',
     mobileNo: '',
     forgetPasswordAnswer: '',
     approve: undefined,
@@ -30,11 +31,10 @@ export class TrainerLoginComponent {
     gender: ''
   };
 
-  constructor(private trainerService: TrainerService, private router: Router) {}
+  constructor(private trainerService: TrainerService, private router: Router, private encryptDecrypt: EncryptDecryptService) { }
 
   ngOnInit() {
     if (localStorage.length > 0) {
-      this.setLocalStorage();
       this.onSubmit();
     }
   }
@@ -42,12 +42,15 @@ export class TrainerLoginComponent {
   onSubmit() {
     this.trainerService.loginTrainer(this.trainer).subscribe({
       next: (value) => {
-        localStorage.setItem('email', this.trainer.email);
-        localStorage.setItem('password', this.trainer.password);
-        this.router.navigate(['member']);
+        console.log(value)
+        if (value!=null) {
+          this.setLocalStorage()
+          this.router.navigate(['/trainer/view']);
+        }
+        this.loginError = false
       },
       error: (err) => {
-        this.loginError = false
+        console.log("error :", err)
       },
     })
   }
@@ -77,15 +80,25 @@ export class TrainerLoginComponent {
         },
       });
     }
-    else{
+    else {
       this.confirmPassword = false
     }
   }
 
   setLocalStorage() {
-    this.email = localStorage.getItem('email');
-    this.password = localStorage.getItem('password');
-    this.trainer.email = this.email.toString();
-    this.trainer.password = this.password.toString();
+    localStorage.setItem('tEmail', this.encryptDecrypt.encryption(this.trainer.email));
+    localStorage.setItem('tPassword', this.encryptDecrypt.encryption(this.trainer.password));
+  }
+
+  private autoLogin() {
+    if (localStorage.length >= 0) {
+      const email = localStorage.getItem('tEmail');
+      const password = localStorage.getItem('tPassword');
+      this.trainer.email = (this.encryptDecrypt.decryption(email))
+      this.trainer.password = (this.encryptDecrypt.decryption(password))
+    }
+    else{
+      console.log("User Not Found")
+    }
   }
 }

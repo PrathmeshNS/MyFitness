@@ -11,7 +11,7 @@
                     <h2 class="fw-bold mb-2 text-uppercase">Trainer Login</h2>
                     <p *ngIf="loginError then showText else showError"></p>
                     <ng-template #showText>
-                      <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                      <p class="text-white-50 mb-5">Please enter your Login Credential!</p>
                     </ng-template>
                     <ng-template #showError>
                       <p style="color: red;" class="text-50 mb-5">
@@ -82,6 +82,7 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
               <div class="card text-white" style="border-radius: 1rem">
               <a style="margin: 16px 0 -0 27px; cursor: pointer; color: wheat;" (click)="showLogin = true" >back</a>
+              <hr>
                 <div class="card-body p-5 text-center">
                   <div class="md-4 pb-5">
                     <p *ngIf="msg; then showText else showError  "></p>

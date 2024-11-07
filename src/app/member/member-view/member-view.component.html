@@ -7,7 +7,6 @@
   <div *ngIf="showMaterialContent; then showMaterial; else showProfile"></div>
   <ng-template #showMaterial>
     <div>
-
       <div class="welcomeWithName">
         <marquee behavior="left" direction="">
           Hello {{ memberDetails.gender | salutation : memberDetails.firstName }}

@@ -1,7 +1,6 @@
 export interface Admin{
     adminId: 0,
     adminName: "",
-    adminEmail: "",
-    adminPassword: "",
-   
+    adminEmail:string,
+    adminPassword: string   
 }

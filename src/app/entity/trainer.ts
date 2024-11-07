@@ -1,8 +1,8 @@
 export interface Trainer{
     trainer_id: 0,
     fullName: '',
-    email: '',
-    password: '',
+    email: string,
+    password: string,
     confirmPassword: ''
     mobileNo: '',
     forgetPasswordAnswer: '',

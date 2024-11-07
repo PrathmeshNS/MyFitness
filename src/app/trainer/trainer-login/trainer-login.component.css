@@ -1,6 +1,6 @@
 
 body{
-    background: url(/assets/loginMemberBackground.jpg) no-repeat;
+    background: url(/assets/trainer-login.avif) no-repeat;
     background-size: cover;
 }
 
@@ -29,6 +29,10 @@ body{
     text-decoration: none;
     cursor: pointer;
     color: wheat;
+}
+
+hr{
+    margin: 1rem 0 -1rem 0;
 }
 
 

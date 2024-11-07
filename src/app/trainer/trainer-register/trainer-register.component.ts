@@ -31,7 +31,7 @@ export class TrainerRegisterComponent {
     this.trainerService.insertTrainer(this.trainer).subscribe({
       next: (value) => {
         console.log(value)
-        this.router.navigate(['/trainer/view'])
+        this.router.navigate(['/trainer/'])
       },
       error: (err) => {
         console.log(err)

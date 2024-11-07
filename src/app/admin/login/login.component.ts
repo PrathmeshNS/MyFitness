@@ -19,26 +19,42 @@ export class LoginComponent {
     adminPassword: ''
   }
 
-  constructor(private adminService: AdminService, private router: Router, private encryptDecrypt: EncryptDecryptService) { }
+  constructor(private adminService: AdminService, private router: Router, private encryptDecrypt: EncryptDecryptService) {
+    this.autoLogin();
+  }
 
+  ogOnInit() {
+  }
 
   onSubmit() {
-    console.log(this.adminData)
     this.adminService.adminLogin(this.adminData).subscribe({
       next: (value) => {
         if (value != null) {
           this.adminService.adminServiceData = value;
-          const uName = this.encryptDecrypt.encryption(this.adminData.adminEmail);
-          const uPass = this.encryptDecrypt.encryption(this.adminData.adminPassword);
-          localStorage.setItem("uName", uName)
-          localStorage.setItem("uPass", uPass)
           this.router.navigate(['admin/adminView'])
+          this.settingUpLocalStorage()
         }
       },
-      error: (error) => {
-        console.log("from error : ", error)
+      error: (err) => {
+        console.log("unknown Login")
       }
     })
   }
 
+  private settingUpLocalStorage() {
+    const uName = this.encryptDecrypt.encryption(this.adminData.adminEmail);
+    const uPass = this.encryptDecrypt.encryption(this.adminData.adminPassword);
+    localStorage.setItem("uName", uName)
+    localStorage.setItem("uPass", uPass)
+  }
+
+  private autoLogin() {
+    if (localStorage.length >= 0) {
+      const uName = localStorage.getItem("uName")
+      const uPass = localStorage.getItem("uPass")
+      this.adminData.adminEmail = this.encryptDecrypt.decryption(uName)
+      this.adminData.adminPassword = this.encryptDecrypt.decryption(uPass)
+      this.onSubmit()
+    }
+  }
 }
