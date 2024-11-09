@@ -1,9 +1,9 @@
 export interface Member{
-    memberId: 0,
+    memberId: number,
     firstName: '',
     lastName: '',
-    email: "",
-    password: '',
+    email: string;
+    password: string,
     gender: '',
     mobileNo: '',
     forgetPasswordAnswer: '',

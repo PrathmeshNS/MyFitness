@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { endWith } from 'rxjs';
 import { Trainer } from 'src/app/entity/trainer';
 import { EncryptDecryptService } from 'src/app/services/encrypt-decrypt.service';
+import { MaterialService } from 'src/app/services/material.service';
 import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
@@ -26,28 +28,40 @@ export class TrainerLoginComponent {
     confirmPassword: '',
     mobileNo: '',
     forgetPasswordAnswer: '',
-    approve: undefined,
+    approve: false,
     aqaureByMember: 0,
     gender: ''
   };
 
-  constructor(private trainerService: TrainerService, private router: Router, private encryptDecrypt: EncryptDecryptService) { }
+  constructor(private trainerService: TrainerService, private router: Router, private encryptDecrypt: EncryptDecryptService) {
+    if (localStorage.getItem("tEmail") != null) {
+      this.autoLogin()
+    }
+  }
 
   ngOnInit() {
-    if (localStorage.length > 0) {
-      this.onSubmit();
-    }
   }
 
   onSubmit() {
     this.trainerService.loginTrainer(this.trainer).subscribe({
       next: (value) => {
         console.log(value)
-        if (value!=null) {
-          this.setLocalStorage()
-          this.router.navigate(['/trainer/view']);
+        if (value != null) {
+          this.trainerService.trainerServiceDetails = value;
+          console.warn("Here At If ")
+          if (this.trainerService.trainerServiceDetails.approve) {
+            this.setLocalStorage()
+            console.warn("Here approve ")
+
+            this.router.navigate(['/trainer/view']);
+          }
+          else {
+            alert("Your Are Not Approve yet. Wait Till Approve!!")
+          }
         }
-        this.loginError = false
+        else {
+          this.loginError = false
+        }
       },
       error: (err) => {
         console.log("error :", err)
@@ -59,6 +73,7 @@ export class TrainerLoginComponent {
   onCheck() {
     this.trainerService.checkForgetPassword(this.trainer).subscribe({
       next: (value) => {
+        console.log(value)
         this.showForgetSection = false;
         this.trainer.password = "";
       },
@@ -77,6 +92,7 @@ export class TrainerLoginComponent {
           this.trainer.password = ""
         },
         error: (err) => {
+          
         },
       });
     }
@@ -85,20 +101,23 @@ export class TrainerLoginComponent {
     }
   }
 
-  setLocalStorage() {
+  private setLocalStorage() {
     localStorage.setItem('tEmail', this.encryptDecrypt.encryption(this.trainer.email));
     localStorage.setItem('tPassword', this.encryptDecrypt.encryption(this.trainer.password));
   }
 
   private autoLogin() {
-    if (localStorage.length >= 0) {
+    if (localStorage.getItem("tEmail") != null) {
       const email = localStorage.getItem('tEmail');
       const password = localStorage.getItem('tPassword');
-      this.trainer.email = (this.encryptDecrypt.decryption(email))
-      this.trainer.password = (this.encryptDecrypt.decryption(password))
+      this.trainer.email = (this.encryptDecrypt.decryption(email)).toString();
+      this.trainer.password = (this.encryptDecrypt.decryption(password)).toString();
+
+      this.onSubmit()
     }
-    else{
+    else {
       console.log("User Not Found")
     }
   }
+
 }

@@ -49,6 +49,16 @@ body {
    
 }
 
+.show-booked-material{
+    float: right;
+    position: relative;
+
+}
+
+.show-booked-material>img{
+    margin: 0 0 0 0;
+}
+
 .logout-member {
     float: right;
     margin: 2px 2rem 0 0;
@@ -244,6 +254,12 @@ h6 {
     color: #ff00ff;
     z-index: -2;
  }
+
+
+
+
+
+
  
  @keyframes glitch-color {
     0% {

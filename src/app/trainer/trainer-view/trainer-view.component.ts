@@ -11,9 +11,9 @@ import { TrainerService } from 'src/app/services/trainer.service';
   styleUrls: ['./trainer-view.component.css']
 })
 export class TrainerViewComponent {
-  showTrainerProfile = false;
 
-  trainerName: any;
+  showTrainerProfile = false;
+  
   material: Material[] = [];
 
 
@@ -25,17 +25,20 @@ export class TrainerViewComponent {
     confirmPassword: '',
     mobileNo: '',
     forgetPasswordAnswer: '',
-    approve: undefined,
+    approve: false,
     aqaureByMember: 0,
     gender: ''
   }
 
 
-  constructor(private trainerService: TrainerService, private router: Router, private materialService: MaterialService) {
-    // if (localStorage.length<=0) {
-    //   alert("Please Login as Trainer")
-    //   router.navigate(['trainer'])
-    // }
+  constructor(private trainerService: TrainerService, private router:Router, private materialService: MaterialService) {
+    if (localStorage.getItem("tEmail")==null) {
+      alert("Please Login as Trainer")
+      router.navigate(['trainer'])
+    }else{
+      this.trainerDetails = trainerService.trainerServiceDetails
+      this.getAllMaterrial()
+    }
   }
 
 
@@ -54,4 +57,16 @@ export class TrainerViewComponent {
     return this.myPassword[randomIndex];
   }
 
+  getAllMaterrial(){
+    this.materialService.getAllMaterial().subscribe({
+      next:(value)=> {
+         console.log(value)
+         this.material = value
+      },
+      error:(err) =>{
+          console.log(err)
+      },
+    })
+
+  }
 }

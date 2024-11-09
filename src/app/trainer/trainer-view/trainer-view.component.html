@@ -8,36 +8,36 @@
     <main>
         <div class="greet">
             <marquee behavior="" direction="">
-                <p> Hello {{trainerName}}, </p>
+                <p> Hello {{trainerDetails.fullName}}, </p>
             </marquee>
         </div>
 
-        <div *ngIf="showTrainerProfile; then showFrontScreen; else showProfileScreen"></div>
+        <div *ngIf="!showTrainerProfile; then showFrontScreen; else showProfileScreen"></div>
 
       <ng-template #showFrontScreen>
             <div class="trainer-image">
-                <img src="/assets/maleUserImage.png" alt="" width="60%">
+                <img src="{{trainerDetails.gender|userImage}}" style="cursor: pointer;"  (click)="showTrainerProfile = true" alt="" width="60%">
             </div>
     
             <div class="showMaterial" style="overflow:scroll;">
                 <section class="vh-100%">
                     <div class="container h-50">
-                        <div class="row d-flex justify-content-start align-items-center h-50 ms-5">
+                        <div class="row d-flex justify-content-start align-items-center h-50">
                             <div class="col col-xl-9" style="margin: auto; backdrop-filter: blur(10px);">
-                                <div class="card mb-5" style="border-radius: 15px">
+                                <div class="card mb-5" style="border-radius: 15px" *ngFor="let materials of material">
                                     <div class="card-body p-4">
-                                        <h3 class="mb-3 text-center"> iugiuk</h3>
+                                        <h3 class="mb-3 text-center">{{materials.materialName}} </h3>
                                         <div class="d-flex justify-content-start align-items-center">
                                             <a>
-                                                <img src="/assets/maleUserImage.png" width="60" />
-                                            </a>
-                                            <p class="mb-0 text-uppercase">
-                                                <span class="ms-3 me-4">|jyfguyj</span>
+                                                <img src={{materials.url}} width="60" />
+                                            </a>  
+                                            <p class="mb-0 text-capitalize" style="margin: 0 2rem 0;" >  
+                                               <span class="">  {{materials.materialDescription}}</span>
                                             </p>
-                                            <p class="mb-0 text-capitalize">
+                                            <p class="mb-0 text-capitalize" style="margin: 0 0 0 -6rem;">
                                                 <span class="text-muted small"></span>
                                                 <br>
-                                                <i class="text-center fas fa-cog me-2"> Quantity :21</i>
+                                                <i class="text-center fas fa-cog me-2"> | Quantity : {{materials.quantity}}</i>
                                             </p>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                             <div class="card user-card-full">
                                 <div class="row m-l-0 m-r-0">
                                     <div class="col-sm-4 bg-c-lite-green user-profile">
-                                        <img src="/assets/backButton.png" class="backButton" alt="Back Button"
+                                        <img src="/assets/backButton.png" (click)="showTrainerProfile= false" class="backButton" alt="Back Button"
                                             width="40px" (click)="showTrainerProfile = true " />
                                         <div class="card-block text-center text-white">
                                             <div class="m-b-25">

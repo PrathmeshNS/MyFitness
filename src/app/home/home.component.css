@@ -92,8 +92,10 @@
 }
 
 .signbtn:hover {
-  background: rgba(212, 48, 48, 0.76);
+  background:transparent;
   transition: 0.4s;
+  color: #9676b8;
+
 }
 
 .max-width {
@@ -182,7 +184,7 @@ section {
 
 .dropdown-content a:hover {
   background-color: rgb(242, 172, 172);
-  color: white !important;
+  color: #9676b8 !important;
   border-radius: 10px;
   padding: 2px;
 }
@@ -192,15 +194,9 @@ section {
   background: transparent;
 }
 
-
-/*-------------------------------------------------------*/
-/* services */
-/*section {
-        margin: 20px;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }*/
+.dropbtn:hover{
+  color: #9676b8;
+}
 
 h2 {
   color: #333;

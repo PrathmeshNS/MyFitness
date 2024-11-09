@@ -1,5 +1,5 @@
 export interface Material{
-    materialId: 0,
+    materialId: number,
     materialName: '',
     quantity: 0,
     materialDescription: '',

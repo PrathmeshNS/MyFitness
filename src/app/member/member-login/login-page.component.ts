@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Member } from '../../entity/member';
 import { MemberService } from '../../services/member.service';
 import { Route, Router } from '@angular/router';
+import { EncryptDecryptService } from 'src/app/services/encrypt-decrypt.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,11 +12,9 @@ import { Route, Router } from '@angular/router';
 export class LoginPageComponent {
   showLogin = true;
   showForgetSection = true;
-  email: any;
-  password: any;
   msg = true;
   loginError = true;
-  confirmPassword= true;
+  confirmPassword = true;
 
   member: Member = {
     memberId: 0,
@@ -29,27 +28,24 @@ export class LoginPageComponent {
     confirmPassword: ''
   };
 
-  constructor(private memberService: MemberService, private router: Router) {}
+  constructor(private memberService: MemberService, private router: Router, private encryptDecryptService: EncryptDecryptService) {
+    if (localStorage.getItem("memberEmail") != null) {
+      this.autoLogin()
+    }
+  }
 
   ngOnInit() {
-    if (localStorage.length > 0) {
-      this.setLocalStorage();
-      this.onSubmit();
-    }
   }
 
   onSubmit() {
     this.memberService.loginMember(this.member).subscribe({
       next: (value) => {
-        localStorage.setItem('memberEmail', this.member.email);
-        localStorage.setItem('memberPassword', this.member.password);
+        this.setLocalStorage()
         this.memberService.serviceMemberData = value;
         this.router.navigate(['member/view']);
-        console.log(value)
       },
       error: (err) => {
         this.loginError = false
-        console.log(err)
       },
     });
   }
@@ -78,15 +74,31 @@ export class LoginPageComponent {
         },
       });
     }
-    else{
+    else {
       this.confirmPassword = false
     }
   }
 
-  setLocalStorage() {
-    this.email = localStorage.getItem('memberEmail');
-    this.password = localStorage.getItem('memberPassword');
-    this.member.email = this.email.toString();
-    this.member.password = this.password.toString();
+  private setLocalStorage() {
+    localStorage.setItem("memberEmail", this.encryptDecryptService.encryption(this.member.email));
+    localStorage.setItem("memberPassword", this.encryptDecryptService.encryption(this.member.password));
+  }
+
+  private autoLogin() {
+    if (localStorage.getItem("memberEmail") != null) {
+      const email = localStorage.getItem("memberEmail");
+      const password = localStorage.getItem("memberPassword");
+
+      if (email != null && password != null) {
+        this.member.email = this.encryptDecryptService.decryption(email.toString());
+        this.member.password = this.encryptDecryptService.decryption(password.toString());
+        console.log("email is : ", email, " and Password Is : ", password)
+        this.onSubmit();
+      }
+
+    }
+    else {
+      console.log("Member Not Found ")
+    }
   }
 }

@@ -5,6 +5,8 @@ import { Member } from 'src/app/entity/member';
 import { MaterialService } from 'src/app/services/material.service';
 import { MemberService } from 'src/app/services/member.service';
 import { LoginPageComponent } from '../member-login/login-page.component';
+import { BookingStatusOfMaterial } from 'src/app/entity/bookingStatusOfMaterial';
+import { BookingStatusService } from 'src/app/services/booking-status.service';
 
 @Component({
   selector: 'app-member-view',
@@ -12,6 +14,7 @@ import { LoginPageComponent } from '../member-login/login-page.component';
   styleUrls: ['./member-view.component.css'],
 })
 export class MemberViewComponent {
+
   showMaterialContent = true;
   memberDetails: Member = {
     memberId: 0,
@@ -27,7 +30,10 @@ export class MemberViewComponent {
 
   material: Material[] = [];
 
-  constructor( private memberService: MemberService, private router: Router,private materialService: MaterialService) {
+  constructor(private memberService: MemberService,
+    private router: Router,
+    private materialService: MaterialService,
+    private bookingStatusMaterial: BookingStatusService) {
     this.memberDetails = this.memberService.serviceMemberData;
     if (this.memberDetails.firstName.length <= 0) {
       if (localStorage.length <= 0) {
@@ -64,6 +70,7 @@ export class MemberViewComponent {
     '**************we3k2s',
     '**************fh983s',
   ];
+  
   generateRandomePassword() {
     const randomIndex = Math.floor(Math.random() * this.myPassword.length);
     return this.myPassword[randomIndex];
@@ -72,15 +79,23 @@ export class MemberViewComponent {
   logout() {
     this.memberDetails.email = ""
     this.memberDetails.password = ""
-    this.ngOnDestroy()
     this.router.navigate(['./']);
   }
 
-  ngOnDestroy(){
-    localStorage.removeItem("email")
-    localStorage.removeItem("password")
-    // this.memberLogin.email = ""
-    // this.memberLogin.password = ""
-    localStorage.clear()
+
+  viewMaterial(materialId: number) {
+    
+  }
+
+
+  bookMaterial(materialId: number) {
+    this.bookingStatusMaterial.bookMaterial(this.memberDetails.memberId, materialId).subscribe({
+      next: (value) => {
+        console.log(value)
+      },
+      error: (err) => {
+        console.log(err)
+      },
+    })
   }
 }

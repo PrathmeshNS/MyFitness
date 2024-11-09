@@ -19,7 +19,7 @@ export class TrainerRegisterComponent {
     password: '',
     mobileNo: '',
     forgetPasswordAnswer: '',
-    approve: undefined,
+    approve: false,
     aqaureByMember: 0,
     gender: '',
     confirmPassword: ''

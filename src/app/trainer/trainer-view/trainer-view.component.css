@@ -107,7 +107,7 @@ main {
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     border: none;
     margin-bottom: 30px;
-    width: 120%;
+    width: 110%;
     height: 115%;
 }
 
@@ -148,7 +148,7 @@ main {
 }
 
 .backButton {
-    margin: -1rem 0 0 calc(100% - 10.5rem);
+    margin: -1rem 0 0 calc(100% - 15.5rem);
     cursor: pointer;
 }
 
