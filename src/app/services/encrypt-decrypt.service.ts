@@ -19,6 +19,7 @@ export class EncryptDecryptService {
     }
   }
 
+  
   decryption(data: any) {
     try {
       const pass = CryptoJS.AES.decrypt(data, ConstantValues.EN_KEYS)

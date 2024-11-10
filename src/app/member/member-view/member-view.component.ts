@@ -14,8 +14,9 @@ import { BookingStatusService } from 'src/app/services/booking-status.service';
   styleUrls: ['./member-view.component.css'],
 })
 export class MemberViewComponent {
-
+  bookedMaterial = true;
   showMaterialContent = true;
+
   memberDetails: Member = {
     memberId: 0,
     firstName: '',
@@ -34,13 +35,13 @@ export class MemberViewComponent {
     private router: Router,
     private materialService: MaterialService,
     private bookingStatusMaterial: BookingStatusService) {
-    this.memberDetails = this.memberService.serviceMemberData;
-    if (this.memberDetails.firstName.length <= 0) {
-      if (localStorage.length <= 0) {
-        alert('Login First as a Member');
-        this.router.navigate(['/member/']);
-      }
-    }
+    // if (localStorage.getItem("memberEmail") == null) {
+    //   alert("Please Login as Member")
+    //   router.navigate(['member'])
+    // } else {
+    //   this.memberDetails = memberService.serviceMemberData
+    // }
+      this.checkMemberMaterial(this.memberDetails.memberId)
   }
 
   ngOnInit() {
@@ -61,7 +62,7 @@ export class MemberViewComponent {
     this.showMaterialContent = true;
   }
 
-  myPassword: string[] = [
+  private myPassword: string[] = [
     '**************7e8j5j6',
     '**************7e88jg',
     '**************7e8uhgs',
@@ -70,7 +71,7 @@ export class MemberViewComponent {
     '**************we3k2s',
     '**************fh983s',
   ];
-  
+
   generateRandomePassword() {
     const randomIndex = Math.floor(Math.random() * this.myPassword.length);
     return this.myPassword[randomIndex];
@@ -84,7 +85,7 @@ export class MemberViewComponent {
 
 
   viewMaterial(materialId: number) {
-    
+
   }
 
 
@@ -92,6 +93,18 @@ export class MemberViewComponent {
     this.bookingStatusMaterial.bookMaterial(this.memberDetails.memberId, materialId).subscribe({
       next: (value) => {
         console.log(value)
+      },
+      error: (err) => {
+        console.log(err)
+      },
+    })
+  }
+
+  private checkMemberMaterial(memberId: number) {
+    this.bookingStatusMaterial.checkMemberMaterial(memberId).subscribe({
+      next: (value) => {
+        console.log(value)
+        this.bookedMaterial = true
       },
       error: (err) => {
         console.log(err)

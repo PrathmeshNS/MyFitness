@@ -5,7 +5,7 @@
 
 body {
     background-color: #087ba9;
-    height: 100%;
+    height: 100vh;
 }
 
 .welcomeUser>h1 {
@@ -40,23 +40,27 @@ body {
     height: 6.5rem;
 }
 
-.userProfile>img {  
+.userProfile>img {
     background: fixed;
 }
 
-.userProfile:hover{
+.userProfile:hover {
     cursor: pointer;
-   
+
 }
 
-.show-booked-material{
+.show-booked-material {
     float: right;
     position: relative;
 
 }
 
-.show-booked-material>img{
-    margin: 0 0 0 0;
+.show-booked-material>img {
+    margin: 2.5rem calc(100% + 13rem) 0 0;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    padding: 2px;
 }
 
 .logout-member {
@@ -221,9 +225,9 @@ h6 {
     align-items: center;
     justify-content: center;
     text-align: center;
- }
- 
- .glitch {
+}
+
+.glitch {
     position: relative;
     font-size: 80px;
     font-weight: 700;
@@ -231,58 +235,103 @@ h6 {
     color: #fff;
     letter-spacing: 5px;
     z-index: 1;
- }
- 
- .glitch:before,
- .glitch:after {
+}
+
+.glitch:before,
+.glitch:after {
     display: block;
     content: attr(data-glitch);
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0.8;
- }
- 
- .glitch:before {
+}
+
+.glitch:before {
     animation: glitch-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
     color: #0ff;
     z-index: -1;
- }
- 
- .glitch:after {
+}
+
+.glitch:after {
     animation: glitch-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
     color: #ff00ff;
     z-index: -2;
- }
+}
 
+.showMaterial {
+    width: 62%;
+    background: #F9FFB5;
+    border: none;
+    border-radius: 15px;
+    margin: 0 0 0 calc(100% - 82%);
+    padding: 3rem 0;
+    height: 70vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 
+.card-body {
+    background-color: grey;
+    color: wheat;
+    border-radius: 10px;
+}
 
+.show-booked {
+    width: 26rem;
+  height: 12rem;
+  border: 1px solid black;
+  position: absolute;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(50px);
+  margin: 3px 0 0 calc(100% - 28rem);
+  border-radius: 44rem 43rem 94rem 95rem;
+  overflow: hidden;
+  display: none;
+  transition: 1s all ease-in;
+}
 
+.content{
+    display: flex;
+    margin: 0 auto;
+    border-bottom: 1px solid;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 8px;
+    margin: 10px 0 0 0;
+    color: wheat;
+    align-items: center; 
+}
 
+.show-booked-material>img:hover + .show-booked{
+    display: block;
+    transition: 1s all ease-in-out;
 
- 
- @keyframes glitch-color {
+}
+
+@keyframes glitch-color {
     0% {
-       transform: translate(0);
+        transform: translate(0);
     }
- 
+
     20% {
-       transform: translate(-3px, 3px);
+        transform: translate(-3px, 3px);
     }
- 
+
     40% {
-       transform: translate(-3px, -3px);
+        transform: translate(-3px, -3px);
     }
- 
+
     60% {
-       transform: translate(3px, 3px);
+        transform: translate(3px, 3px);
     }
- 
+
     80% {
-       transform: translate(3px, -3px);
+        transform: translate(3px, -3px);
     }
- 
+
     to {
-       transform: translate(0);
+        transform: translate(0);
     }
- }
+}

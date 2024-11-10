@@ -2,7 +2,7 @@
   <header>
     <div class="glitch-wrapper">
       <div class="glitch" data-glitch="Welcome To Gym">Welcome To Gym</div>
-   </div>
+    </div>
   </header>
   <div *ngIf="showMaterialContent; then showMaterial; else showProfile"></div>
   <ng-template #showMaterial>
@@ -12,56 +12,90 @@
           Hello {{ memberDetails.gender | salutation : memberDetails.firstName }}
         </marquee>
       </div>
+
+      <div *ngIf="bookedMaterial; then showBooked ">
+      </div>
+
+      <ng-template #showBooked>
+        <div class="show-booked-material">
+          <img src="/assets/booked-material.png" alt="" srcset="" width="50px">
+
+          <div class="show-booked">
+            <div class="content">
+              <p class="material-img">
+                <img src="/assets/maleUserImage.png" alt="" srcset="" width="40px">
+              </p>
+              <p class="name"> | iusdfgsdiuk</p>
+              <p class="status"> | Approve/Reject : Approve</p>
+            </div>
+
+            <div class="content">
+              <p class="material-img">
+                <img src="/assets/maleUserImage.png" alt="" srcset="" width="40px">
+              </p>
+              <p class="name"> | iusdfgsdiuk</p>
+              <p class="status"> | Approve/Reject : Approve</p>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </ng-template>
+
+
       <div class="userProfile" (click)="showUserProfile()">
         <img src="{{ memberDetails.gender | userImage }}" alt="" srcset="" width="100px" />
-      </div>
-      <div class="show-booked-material">
-        <img src="/assets/booked-material.png" alt="" srcset="" width="50px">
       </div>
     </div>
     <main>
       <p class="logout-member">
         <img src="assets/logout.png" width="40px" alt="" (click)="logout()">
       </p>
-      <section class="vh-100%">
-        <div class="container h-50" *ngFor="let materials of material">
-          <div class="row d-flex justify-content-start align-items-center h-50 ms-5">
-            <div class="col col-xl-9" style="margin: -1% 0 0 5%; backdrop-filter: blur(10px);">
-              <div class="card mb-5" style="border-radius: 15px">
-                <div class="card-body p-4">
-                  <h3 class="mb-3 text-center">{{ materials.materialName }}</h3>
-                  <hr />
-                  <div class="d-flex justify-content-start align-items-center">
-                    <a>
-                      <img src="{{ materials.url }}" width="60" />
-                    </a>
-                    <p class="mb-0 text-uppercase">
-                      <span class="ms-3 me-4">|</span>
-                    </p>
-                    <p class="mb-0 text-capitalize">
-                      <i class="text-center fas fa-cog me-2"></i>
-                      <span class="text-muted small">{{
-                        materials.materialDescription
-                        }}</span>
-                    </p>
-                    <p class="mb-0 text-uppercase">
-                      <span class="ms-3 me-4">|</span>
-                    </p>
-                    <button type="button" data-mdb-button-init data-mdb-ripple-init
-                      class="btn btn-outline-warning btn-sm btn-floating" (click)="viewMaterial(materials.materialId)">
-                      view
-                    </button>
-                    <button type="button" data-mdb-button-init data-mdb-ripple-init
-                      class="ms-4 btn btn-outline-primary btn-sm btn-floating" (click)=" bookMaterial(materials.materialId)" >
-                      book
-                    </button>
+      <div class="showMaterial" style="overflow: scroll;">
+        <section class="vh-100%">
+          <div class="container h-50" *ngFor="let materials of material" style="width: calc(100% + 14rem);">
+            <div class="row d-flex justify-content-start align-items-center h-50 ms-5">
+              <div class="col col-xl-9" style="margin: -1% 0 0 2%; backdrop-filter: blur(10px);">
+                <div class="card mb-5" style="border-radius: 15px">
+                  <div class="card-body p-4">
+                    <h3 class="mb-3 text-center">{{ materials.materialName }}</h3>
+                    <hr />
+                    <div class="d-flex justify-content-start align-items-center">
+                      <a>
+                        <img src="{{ materials.url }}" width="60" />
+                      </a>
+                      <p class="mb-0 text-uppercase">
+                        <span class="ms-3 me-4">|</span>
+                      </p>
+                      <p class="mb-0 text-capitalize">
+                        <i class="text-center fas fa-cog me-2"></i>
+                        <span class="text-muted small" style="color: wheat !important;">{{
+                          materials.materialDescription
+                          }} </span>
+                      </p>
+                      <p class="mb-0 text-uppercase">
+                        <span class="ms-3 me-4">|</span>
+                      </p>
+                      <button type="button" data-mdb-button-init data-mdb-ripple-init
+                        class="btn btn-outline-warning btn-sm btn-floating"
+                        (click)="viewMaterial(materials.materialId)">
+                        view
+                      </button>
+                      <button type="button" data-mdb-button-init data-mdb-ripple-init
+                        class="ms-4 btn btn-outline-primary btn-sm btn-floating"
+                        (click)=" bookMaterial(materials.materialId)">
+                        book
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   </ng-template>
 
@@ -80,7 +114,7 @@
                       <img src="{{ memberDetails.gender | userImage }}" width="20%" />
                     </div>
                     <h6 class="f-w-600">
-                      {{   memberDetails.gender | salutation : memberDetails.firstName
+                      {{ memberDetails.gender | salutation : memberDetails.firstName
                       }}
                     </h6>
                     <p>{{ memberDetails.lastName }}</p>
