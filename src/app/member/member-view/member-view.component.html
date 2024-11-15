@@ -21,30 +21,17 @@
           <img src="/assets/booked-material.png" alt="" srcset="" width="50px">
 
           <div class="show-booked">
-            <div class="content">
+            <div class="content" *ngFor="let bookedMat of bookedMaterialShow">
               <p class="material-img">
-                <img src="/assets/maleUserImage.png" alt="" srcset="" width="40px">
+                <img src="{{bookedMat.material.url}}" alt="" srcset="" width="40px">
               </p>
-              <p class="name"> | iusdfgsdiuk</p>
-              <p class="status"> | Approve/Reject : Approve</p>
-            </div>
-
-            <div class="content">
-              <p class="material-img">
-                <img src="/assets/maleUserImage.png" alt="" srcset="" width="40px">
-              </p>
-              <p class="name"> | iusdfgsdiuk</p>
-              <p class="status"> | Approve/Reject : Approve</p>
+              <p class="name"> | {{bookedMat.material.materialDescription}}</p>
+              <p class="status"> | Approve/Reject : {{bookedMat.status}}</p>
             </div>
           </div>
 
         </div>
-
-
-
       </ng-template>
-
-
       <div class="userProfile" (click)="showUserProfile()">
         <img src="{{ memberDetails.gender | userImage }}" alt="" srcset="" width="100px" />
       </div>
@@ -95,6 +82,7 @@
             </div>
           </div>
         </section>
+
       </div>
     </main>
   </ng-template>

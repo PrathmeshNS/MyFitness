@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'GymManagementSystem'`, () => {
+  it(`should have as title 'MyFitness'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('GymManagementSystem');
+    expect(app.title).toEqual('MyFitness');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('GymManagementSystem app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('MyFitness app is running!');
   });
 });

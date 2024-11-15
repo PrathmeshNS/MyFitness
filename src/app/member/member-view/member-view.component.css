@@ -279,19 +279,21 @@ h6 {
 
 .show-booked {
     width: 26rem;
-  height: 12rem;
-  border: 1px solid black;
-  position: absolute;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(50px);
-  margin: 3px 0 0 calc(100% - 28rem);
-  border-radius: 44rem 43rem 94rem 95rem;
-  overflow: hidden;
-  display: none;
-  transition: 1s all ease-in;
+    height: 12rem;
+    border: 1px solid black;
+    position: absolute;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(50px);
+    margin: 3px 0 0 calc(100% - 28rem);
+    border-radius: 44rem 43rem 94rem 95rem;
+    overflow: hidden;
+    display: none;
+    transition: 3s all ease-in;
+    z-index: 1;
 }
 
-.content{
+
+.content {
     display: flex;
     margin: 0 auto;
     border-bottom: 1px solid;
@@ -301,13 +303,12 @@ h6 {
     border-radius: 8px;
     margin: 10px 0 0 0;
     color: wheat;
-    align-items: center; 
+    align-items: center;
 }
 
-.show-booked-material>img:hover + .show-booked{
+.show-booked-material>img:hover+.show-booked {
     display: block;
-    transition: 1s all ease-in-out;
-
+    transition: 5s all ease-in-out;
 }
 
 @keyframes glitch-color {

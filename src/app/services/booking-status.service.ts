@@ -4,6 +4,7 @@ import { BookingStatusOfMaterial } from '../entity/bookingStatusOfMaterial';
 import { Member } from '../entity/member';
 import { Material } from '../entity/material';
 import { NONE_TYPE } from '@angular/compiler';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,7 @@ export class BookingStatusService {
     return this.http.post(this.api + "bookMaterial", this.bookingStatus);
   }
 
-  checkMemberMaterial(memberId: number) {
+  checkMemberMaterial(memberId: number){
     return this.http.get(`${this.api + 'checkMemberMaterial'}/${memberId}`);
   }
 

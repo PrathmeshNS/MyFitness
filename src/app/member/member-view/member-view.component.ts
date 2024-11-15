@@ -17,6 +17,7 @@ export class MemberViewComponent {
   bookedMaterial = true;
   showMaterialContent = true;
 
+  count = 0;
   memberDetails: Member = {
     memberId: 0,
     firstName: '',
@@ -29,19 +30,21 @@ export class MemberViewComponent {
     confirmPassword: '',
   };
 
+  bookedMaterialShow: BookingStatusOfMaterial[] = [];
+
   material: Material[] = [];
 
   constructor(private memberService: MemberService,
     private router: Router,
     private materialService: MaterialService,
     private bookingStatusMaterial: BookingStatusService) {
-    // if (localStorage.getItem("memberEmail") == null) {
-    //   alert("Please Login as Member")
-    //   router.navigate(['member'])
-    // } else {
-    //   this.memberDetails = memberService.serviceMemberData
-    // }
+    if (localStorage.getItem("memberEmail") == null) {
+      alert("Please Login as Member")
+      router.navigate(['member'])
+    } else {
+      this.memberDetails = memberService.serviceMemberData
       this.checkMemberMaterial(this.memberDetails.memberId)
+    }
   }
 
   ngOnInit() {
@@ -80,6 +83,7 @@ export class MemberViewComponent {
   logout() {
     this.memberDetails.email = ""
     this.memberDetails.password = ""
+    this.removeLocalStorage()
     this.router.navigate(['./']);
   }
 
@@ -92,7 +96,9 @@ export class MemberViewComponent {
   bookMaterial(materialId: number) {
     this.bookingStatusMaterial.bookMaterial(this.memberDetails.memberId, materialId).subscribe({
       next: (value) => {
-        console.log(value)
+          if (value) {
+            this.reloadPage()
+          }
       },
       error: (err) => {
         console.log(err)
@@ -103,12 +109,28 @@ export class MemberViewComponent {
   private checkMemberMaterial(memberId: number) {
     this.bookingStatusMaterial.checkMemberMaterial(memberId).subscribe({
       next: (value) => {
-        console.log(value)
-        this.bookedMaterial = true
+        if (value != null) {
+          console.log(value)
+          // this.bookedMaterialShow = value;
+          console.log(this.bookedMaterialShow)
+
+          if (this.bookedMaterialShow.length>=0) {
+            
+            console.log(this.bookedMaterialShow)
+            this.bookedMaterial = true
+          }
+        }
       },
       error: (err) => {
         console.log(err)
       },
     })
+  }
+
+  private removeLocalStorage() {
+    localStorage.clear()
+  }
+  private reloadPage(){
+    window.location.reload()
   }
 }
