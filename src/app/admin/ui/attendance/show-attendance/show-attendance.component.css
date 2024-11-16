@@ -53,7 +53,6 @@
 .show-member {
     display: flex;
     justify-content: space-around;
-    /* margin: 5rem 0 0 0; */
     padding: 16px 14px;
     backdrop-filter: blur(30px);
     margin: 25px 0 0 32px;

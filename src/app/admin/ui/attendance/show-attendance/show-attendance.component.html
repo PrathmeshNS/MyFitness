@@ -1,8 +1,8 @@
 <body>
   <div class="contain-all">
     <div class="back-image">
-      <img src="../assets/backButton.png" style="margin: 0 0 0 20px; display: inline-flex; cursor: pointer; " alt="" srcset=""
-        width="50px" (click)="goBack()" />
+      <img src="../assets/backButton.png" style="margin: 0 0 0 20px; display: inline-flex; cursor: pointer; " alt=""
+        srcset="" width="50px" (click)="goBack()" />
       <p class="heading">Attendance</p>
     </div>
     <div class="container">
@@ -13,7 +13,7 @@
     <ng-template #addAttendance>
       <div class="select">
         <div class="message-search">
-          <p>Select Member From Following  </p>
+          <p>Select Member From Following </p>
           <input type="text" name="" id=""> <img src="" alt="">
         </div>
 
@@ -32,8 +32,8 @@
 
     <ng-template #showAttendanceData>
       <div class="select">
-        <p>List Of Attendance</p>      
-          <div class="show-member" *ngFor="let attendances of attendance ">
+        <p>List Of Attendance</p>
+        <div class="show-member" *ngFor="let attendances of attendance ">
           <div class="show-name">
             <p style="text-align: center;">Name</p>
             <p>{{attendances.member.firstName + " "+ attendances.member.lastName}} </p>
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </ng-template>
   </div>
 </body>
